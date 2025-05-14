@@ -1,0 +1,175 @@
+@model EcommerceApp.Models.Product
+
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div class="container mt-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">Home</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Shop" asp-action="Index">Shop</a></li>
+            <li class="breadcrumb-item"><a asp-controller="Shop" asp-action="Index" asp-route-categoryId="@Model.CategoryId">@Model.Category.Name</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
+        </ol>
+    </nav>
+
+    <div class="card mb-5">
+        <div class="card-body">
+            <div class="row">
+                <!-- Product Image -->                <div class="col-md-6 mb-4">                    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                    {                        <img src="@Url.Content(Model.ImageUrl)" alt="@Model.Name" class="img-fluid rounded"
+                             onerror="this.onerror=null; this.src='/images/placeholder.jpg';">
+                    }
+                    else
+                    {
+                        <div class="bg-light text-center p-5 rounded">
+                            <i class="bi bi-image text-muted" style="font-size: 6rem;"></i>
+                            <p class="mt-3">No image available</p>
+                        </div>
+                    }
+                </div>
+
+                <!-- Product Info -->
+                <div class="col-md-6">
+                    <h1 class="mb-2">@Model.Name</h1>
+                    <p class="text-muted mb-2">Category: @Model.Category.Name</p>
+
+                    <div class="mb-3">
+                        @if (Model.OldPrice.HasValue && Model.OldPrice > Model.Price)
+                        {
+                            <span class="text-decoration-line-through text-muted me-2 fs-5">$@Model.OldPrice.Value.ToString("0.00")</span>
+                        }
+                        <span class="fs-3 fw-bold text-primary">$@Model.Price.ToString("0.00")</span>
+                    </div>
+
+                    <div class="mb-4">
+                        <span class="@(Model.Stock > 0 ? "badge bg-success" : "badge bg-danger") me-2">
+                            @(Model.Stock > 0 ? "In Stock" : "Out of Stock")
+                        </span>
+                        @if (Model.Stock > 0)
+                        {
+                            <small class="text-muted">@Model.Stock items available</small>
+                        }
+                    </div>
+
+                    <p class="mb-4">
+                        @Model.Description
+                    </p>
+
+                    @if (Model.Stock > 0)
+                    {
+                        <form asp-controller="Cart" asp-action="AddToCart" method="post" class="mb-4">
+                            <div class="row align-items-center g-3">
+                                <div class="col-auto">
+                                    <div class="input-group" style="width: 120px;">
+                                        <button class="btn btn-outline-secondary" type="button" id="decrease-quantity">-</button>
+                                        <input type="number" name="quantity" id="quantity-input" value="1" min="1" max="@Model.Stock" class="form-control text-center" />
+                                        <button class="btn btn-outline-secondary" type="button" id="increase-quantity">+</button>
+                                    </div>
+                                </div>
+                                <div class="col-auto">
+                                    <input type="hidden" name="productId" value="@Model.Id" />
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="bi bi-cart-plus"></i> Add to Cart
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning">
+                            This product is currently out of stock.
+                        </div>
+                    }
+
+                    @if (Model.IsFeatured)
+                    {
+                        <div class="mb-4">
+                            <span class="badge bg-warning">Featured Product</span>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Products -->
+    @if (ViewBag.RelatedProducts != null && ((IEnumerable<Product>)ViewBag.RelatedProducts).Any())
+    {
+        <div class="mb-4">
+            <h3>Related Products</h3>
+            <hr />
+
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+                @foreach (var product in (IEnumerable<Product>)ViewBag.RelatedProducts)
+                {
+                    <div class="col">
+                        <div class="card h-100">
+                            <div class="position-relative">                                @if (!string.IsNullOrEmpty(product.ImageUrl))
+                                {
+                                    <img src="@Url.Content(product.ImageUrl)" class="card-img-top" alt="@product.Name" style="height: 180px; object-fit: cover;"
+                                         onerror="this.onerror=null; this.src='/images/placeholder.jpg';">
+                                }
+                                else
+                                {
+                                    <div class="bg-light text-center p-4">
+                                        <i class="bi bi-image text-muted" style="font-size: 2rem;"></i>
+                                    </div>
+                                }
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">@product.Name</h5>
+                                <p class="card-text fw-bold">$@product.Price.ToString("0.00")</p>
+                            </div>
+                            <div class="card-footer bg-white border-top-0">
+                                <a asp-action="Details" asp-route-id="@product.Id" class="btn btn-sm btn-outline-primary w-100">View Details</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Quantity buttons functionality
+            $('#increase-quantity').click(function () {
+                var input = $('#quantity-input');
+                var value = parseInt(input.val());
+                var max = parseInt(input.attr('max'));
+                
+                if (value < max) {
+                    input.val(value + 1);
+                }
+            });
+            
+            $('#decrease-quantity').click(function () {
+                var input = $('#quantity-input');
+                var value = parseInt(input.val());
+                
+                if (value > 1) {
+                    input.val(value - 1);
+                }
+            });
+            
+            // Validate quantity on input change
+            $('#quantity-input').change(function () {
+                var input = $(this);
+                var value = parseInt(input.val());
+                var max = parseInt(input.attr('max'));
+                var min = parseInt(input.attr('min'));
+                
+                if (isNaN(value) || value < min) {
+                    input.val(min);
+                } else if (value > max) {
+                    input.val(max);
+                }
+            });
+        });
+    </script>
+}

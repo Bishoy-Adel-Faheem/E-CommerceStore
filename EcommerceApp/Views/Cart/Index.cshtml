@@ -1,0 +1,193 @@
+@model EcommerceApp.ViewModels.CartViewModel
+
+@{
+    ViewData["Title"] = "Shopping Cart";
+}
+
+<div class="container my-5">
+    <h1>Shopping Cart</h1>
+    <hr />
+
+    @if (Model.Items.Any())
+    {
+        <div class="row">
+            <!-- Cart Items -->
+            <div class="col-lg-8 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Subtotal</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Items)
+                                    {
+                                        <tr id="cart-item-@item.Id">
+                                            <td>                                                <div class="d-flex align-items-center">                                                    @if (!string.IsNullOrEmpty(item.ProductImageUrl))
+                                                    {                                                        <img src="@Url.Content(item.ProductImageUrl)" alt="@item.ProductName" class="img-fluid me-3" 
+                                                             style="width: 60px; height: 60px; object-fit: cover;"
+                                                             onerror="this.onerror=null; this.src='/images/placeholder.jpg';">
+                                                    }
+                                                    <div>
+                                                        <a asp-controller="Shop" asp-action="Details" asp-route-id="@item.ProductId" class="text-decoration-none">
+                                                            @item.ProductName
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>$@item.Price.ToString("0.00")</td>
+                                            <td>
+                                                <div class="input-group" style="width: 120px;">
+                                                    <button class="btn btn-outline-secondary btn-sm decrement-qty" data-id="@item.Id" type="button">-</button>
+                                                    <input type="number" class="form-control form-control-sm text-center item-qty" value="@item.Quantity" data-id="@item.Id" min="1">
+                                                    <button class="btn btn-outline-secondary btn-sm increment-qty" data-id="@item.Id" type="button">+</button>
+                                                </div>
+                                            </td>
+                                            <td class="item-subtotal" data-id="@item.Id">$@item.Subtotal.ToString("0.00")</td>
+                                            <td>
+                                                <button type="button" class="btn btn-sm btn-danger remove-item" data-id="@item.Id">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-3">
+                            <a asp-controller="Shop" asp-action="Index" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i> Continue Shopping
+                            </a>
+                            <form asp-action="ClearCart" method="post">
+                                <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Are you sure you want to clear your cart?');">
+                                    <i class="bi bi-trash"></i> Clear Cart
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cart Summary -->
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="mb-0">Order Summary</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-3">
+                            <span>Subtotal</span>
+                            <span class="cart-total">$@Model.Total.ToString("0.00")</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span>Shipping</span>
+                            <span>Free</span>
+                        </div>
+                        <hr />
+                        <div class="d-flex justify-content-between mb-4">
+                            <span class="fw-bold">Total</span>
+                            <span class="fw-bold cart-total">$@Model.Total.ToString("0.00")</span>
+                        </div>
+                        <a asp-controller="Checkout" asp-action="Index" class="btn btn-primary w-100">
+                            Proceed to Checkout
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="text-center my-5">
+            <i class="bi bi-cart text-muted" style="font-size: 5rem;"></i>
+            <h3 class="mt-3">Your cart is empty</h3>
+            <p class="text-muted">Looks like you haven't added any products to your cart yet.</p>
+            <a asp-controller="Shop" asp-action="Index" class="btn btn-primary mt-3">
+                Start Shopping
+            </a>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Increment quantity
+            $('.increment-qty').click(function() {
+                const id = $(this).data('id');
+                const input = $(`.item-qty[data-id=${id}]`);
+                let value = parseInt(input.val()) + 1;
+                updateQuantity(id, value);
+            });
+
+            // Decrement quantity
+            $('.decrement-qty').click(function() {
+                const id = $(this).data('id');
+                const input = $(`.item-qty[data-id=${id}]`);
+                let value = parseInt(input.val()) - 1;
+                if (value >= 1) {
+                    updateQuantity(id, value);
+                }
+            });
+
+            // Update on direct input
+            $('.item-qty').change(function() {
+                const id = $(this).data('id');
+                let value = parseInt($(this).val());
+                if (isNaN(value) || value < 1) {
+                    value = 1;
+                    $(this).val(1);
+                }
+                updateQuantity(id, value);
+            });
+
+            // Remove item
+            $('.remove-item').click(function() {
+                const id = $(this).data('id');
+                removeItem(id);
+            });
+
+            function updateQuantity(id, quantity) {
+                $.ajax({
+                    url: '@Url.Action("UpdateQuantity", "Cart")',
+                    type: 'POST',
+                    data: { id, quantity },
+                    success: function(response) {
+                        if (response.success) {
+                            $(`.item-subtotal[data-id=${id}]`).text('$' + response.subtotal.toFixed(2));
+                            $('.cart-total').text('$' + response.total.toFixed(2));
+                        }
+                    }
+                });
+            }
+
+            function removeItem(id) {
+                $.ajax({
+                    url: '@Url.Action("RemoveItem", "Cart")',
+                    type: 'POST',
+                    data: { id },
+                    success: function(response) {
+                        if (response.success) {
+                            $(`#cart-item-${id}`).fadeOut(function() {
+                                $(this).remove();
+                                if ($('tbody tr').length === 0) {
+                                    location.reload();
+                                } else {
+                                    $('.cart-total').text('$' + response.total.toFixed(2));
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+}

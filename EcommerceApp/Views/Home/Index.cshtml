@@ -1,0 +1,139 @@
+﻿@model IEnumerable<EcommerceApp.Models.Product>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Hero Section -->
+<div class="bg-primary text-white py-5 mb-5">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 mb-4 mb-md-0">
+                <h1 class="display-4 fw-bold">Welcome to Our Shop</h1>
+                <p class="lead">Find the best products at the best prices.</p>
+                <div class="mt-4">
+                    <a asp-controller="Shop" asp-action="Index" class="btn btn-light btn-lg">Shop Now</a>
+                </div>
+            </div>
+            <div class="col-md-6 text-center">
+                <img src="https://via.placeholder.com/600x400" alt="Hero Image" class="img-fluid rounded">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Featured Products -->
+<div class="container mb-5">
+    <h2 class="text-center mb-4">Featured Products</h2>
+    
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
+        @foreach (var product in Model.Where(p => p.IsFeatured).Take(4))
+        {
+            <div class="col">
+                <div class="card h-100 product-card">
+                    <div class="position-relative">
+                        @if (!string.IsNullOrEmpty(product.ImageUrl))
+                        {
+                            <img src="@product.ImageUrl" class="card-img-top" alt="@product.Name" style="height: 200px; object-fit: cover;">
+                        }
+                        else
+                        {
+                            <div class="bg-light text-center p-5">
+                                <i class="bi bi-image text-muted" style="font-size: 3rem;"></i>
+                            </div>
+                        }
+                        <span class="position-absolute top-0 end-0 badge bg-warning m-2">Featured</span>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">@product.Name</h5>
+                        <p class="card-text text-muted mb-1">@product.Category.Name</p>
+                        <div class="mb-2">
+                            @if (product.OldPrice.HasValue && product.OldPrice > product.Price)
+                            {
+                                <span class="text-decoration-line-through text-muted me-1">$@product.OldPrice.Value.ToString("0.00")</span>
+                            }
+                            <span class="fw-bold">$@product.Price.ToString("0.00")</span>
+                        </div>
+                    </div>
+                    <div class="card-footer bg-white border-top-0">
+                        <div class="d-flex justify-content-between">
+                            <a asp-controller="Shop" asp-action="Details" asp-route-id="@product.Id" class="btn btn-sm btn-outline-secondary">View Details</a>
+                            <form asp-controller="Cart" asp-action="AddToCart" method="post">
+                                <input type="hidden" name="productId" value="@product.Id" />
+                                <input type="hidden" name="quantity" value="1" />
+                                <button type="submit" class="btn btn-sm btn-primary" @(product.Stock <= 0 ? "disabled" : "")>
+                                    <i class="bi bi-cart-plus"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    
+    <div class="text-center mt-4">
+        <a asp-controller="Shop" asp-action="Index" class="btn btn-outline-primary">View All Products</a>
+    </div>
+</div>
+
+<!-- Categories Section -->
+<div class="bg-light py-5 mb-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Shop by Category</h2>
+        <div class="row g-4 justify-content-center">
+            @foreach (var category in Model.Select(p => p.Category).Distinct().Take(3))
+            {
+                <div class="col-md-4">
+                    <a asp-controller="Shop" asp-action="Index" asp-route-categoryId="@category.Id" class="text-decoration-none">
+                        <div class="card h-100 bg-white border-0 shadow-sm">
+                            <div class="card-body text-center p-4">
+                                <i class="bi bi-grid-3x3-gap fs-1 mb-3 text-primary"></i>
+                                <h3 class="card-title">@category.Name</h3>
+                                @if (!string.IsNullOrEmpty(category.Description))
+                                {
+                                    <p class="card-text text-muted">@category.Description</p>
+                                }
+                                <div class="mt-3">
+                                    <span class="btn btn-outline-primary">Shop Now</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<!-- Features Section -->
+<div class="container mb-5">
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 text-center p-3">
+                <div class="card-body">
+                    <i class="bi bi-truck fs-1 text-primary mb-3"></i>
+                    <h3>Free Shipping</h3>
+                    <p class="text-muted">Free shipping on all orders over $50</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 text-center p-3">
+                <div class="card-body">
+                    <i class="bi bi-shield-check fs-1 text-primary mb-3"></i>
+                    <h3>Secure Payment</h3>
+                    <p class="text-muted">Safe & secure payment options</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 border-0 text-center p-3">
+                <div class="card-body">
+                    <i class="bi bi-arrow-counterclockwise fs-1 text-primary mb-3"></i>
+                    <h3>Easy Returns</h3>
+                    <p class="text-muted">30-day return policy</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

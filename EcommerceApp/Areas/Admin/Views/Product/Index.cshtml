@@ -1,0 +1,65 @@
+@model IEnumerable<EcommerceApp.Models.Product>
+
+@{
+    ViewData["Title"] = "Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Products</h1>
+        <a asp-action="Create" class="btn btn-primary">Create New</a>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>@Html.DisplayNameFor(model => model.Name)</th>
+                            <th>@Html.DisplayNameFor(model => model.Price)</th>
+                            <th>@Html.DisplayNameFor(model => model.Stock)</th>
+                            <th>@Html.DisplayNameFor(model => model.Category)</th>
+                            <th>@Html.DisplayNameFor(model => model.IsFeatured)</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>                                <td>                                    @if (!string.IsNullOrEmpty(item.ImageUrl))                                    {                                        <img src="@Url.Content(item.ImageUrl)" alt="@item.Name" style="max-height: 50px; max-width: 50px;" 
+                                             onerror="this.onerror=null; this.src='/images/placeholder.jpg';" />
+                                    }
+                                    else
+                                    {
+                                        <span>No Image</span>
+                                    }
+                                </td>
+                                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Price)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Stock)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Category.Name)</td>
+                                <td>
+                                    @if (item.IsFeatured)
+                                    {
+                                        <span class="badge bg-success">Featured</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">No</span>
+                                    }
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edit</a>
+                                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Delete</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
