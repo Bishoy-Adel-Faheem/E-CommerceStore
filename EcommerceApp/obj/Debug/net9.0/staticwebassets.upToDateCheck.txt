@@ -6,8 +6,10 @@ D:\VSappTest\EcommerceApp\wwwroot\css\site.css
 D:\VSappTest\EcommerceApp\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
 D:\VSappTest\EcommerceApp\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
 D:\VSappTest\EcommerceApp\wwwroot\lib\jquery\dist\jquery.slim.min.map
+D:\VSappTest\EcommerceApp\wwwroot\css\footer-fix.css
 D:\VSappTest\EcommerceApp\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
 D:\VSappTest\EcommerceApp\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
+D:\VSappTest\EcommerceApp\wwwroot\css\admin.css
 D:\VSappTest\EcommerceApp\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
 D:\VSappTest\EcommerceApp\wwwroot\lib\jquery\dist\jquery.slim.js
 D:\VSappTest\EcommerceApp\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
@@ -19,6 +21,7 @@ D:\VSappTest\EcommerceApp\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
 D:\VSappTest\EcommerceApp\wwwroot\placeholder-template.html
 D:\VSappTest\EcommerceApp\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
 D:\VSappTest\EcommerceApp\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
+D:\VSappTest\EcommerceApp\wwwroot\css\payment-methods.css
 D:\VSappTest\EcommerceApp\wwwroot\lib\bootstrap\dist\css\bootstrap.css
 D:\VSappTest\EcommerceApp\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
 D:\VSappTest\EcommerceApp\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
@@ -59,8 +62,12 @@ D:\VSappTest\EcommerceApp\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
 D:\VSappTest\EcommerceApp\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
 D:\VSappTest\EcommerceApp\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
 D:\VSappTest\EcommerceApp\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
+D:\VSappTest\EcommerceApp\wwwroot\js\admin.js
 D:\VSappTest\EcommerceApp\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
 D:\VSappTest\EcommerceApp\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
+wwwroot\css\admin.css
+wwwroot\css\footer-fix.css
+wwwroot\css\payment-methods.css
 wwwroot\css\site.css
 wwwroot\favicon.ico
 wwwroot\images\basketball.jpg
@@ -72,6 +79,7 @@ wwwroot\images\placeholder.jpg
 wwwroot\images\programmingbook.jpg
 wwwroot\images\smartphone.jpg
 wwwroot\images\tshirt.jpg
+wwwroot\js\admin.js
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.css.map

@@ -1,0 +1,101 @@
+@model EcommerceApp.ViewModels.AddressViewModel
+
+@{
+    ViewData["Title"] = "Edit Address";
+}
+
+<div class="container mt-4">
+    <div class="row">
+        <!-- Profile Sidebar -->
+        <div class="col-lg-3 mb-4">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Account</h5>
+                </div>
+                <div class="list-group list-group-flush">
+                    <a asp-controller="Profile" asp-action="Index" class="list-group-item list-group-item-action">
+                        <i class="bi bi-person me-2"></i> Profile Overview
+                    </a>
+                    <a asp-controller="Profile" asp-action="Orders" class="list-group-item list-group-item-action">
+                        <i class="bi bi-box-seam me-2"></i> My Orders
+                    </a>
+                    <a asp-controller="Profile" asp-action="EditProfile" class="list-group-item list-group-item-action">
+                        <i class="bi bi-pencil-square me-2"></i> Edit Profile
+                    </a>
+                    <a asp-controller="Profile" asp-action="EditAddress" class="list-group-item list-group-item-action active">
+                        <i class="bi bi-house-door me-2"></i> Shipping Address
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Edit Address Content -->
+        <div class="col-lg-9">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="mb-0">Edit Shipping Address</h5>
+                </div>
+                <div class="card-body">
+                    <form asp-action="EditAddress" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                        <input type="hidden" asp-for="Id" />
+                        
+                        <div class="mb-3">
+                            <label asp-for="Address" class="form-label"></label>
+                            <input asp-for="Address" class="form-control" />
+                            <span asp-validation-for="Address" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label asp-for="City" class="form-label"></label>
+                                <input asp-for="City" class="form-control" />
+                                <span asp-validation-for="City" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label asp-for="PostalCode" class="form-label"></label>
+                                <input asp-for="PostalCode" class="form-control" />
+                                <span asp-validation-for="PostalCode" class="text-danger"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label asp-for="Country" class="form-label"></label>
+                            <select asp-for="Country" class="form-select">
+                                <option value="">Select Country</option>
+                                <option value="United States">United States</option>
+                                <option value="Canada">Canada</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                                <option value="Australia">Australia</option>
+                                <option value="Germany">Germany</option>
+                                <option value="France">France</option>
+                                <!-- Add more country options as needed -->
+                            </select>
+                            <span asp-validation-for="Country" class="text-danger"></span>
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            <input asp-for="IsDefault" class="form-check-input" />
+                            <label asp-for="IsDefault" class="form-check-label">Set as default shipping address</label>
+                        </div>
+                        
+                        <div class="form-check mb-3">
+                            <input asp-for="IsBilling" class="form-check-input" />
+                            <label asp-for="IsBilling" class="form-check-label">Use as billing address</label>
+                        </div>
+                        
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a asp-action="Index" class="btn btn-outline-secondary me-md-2">Cancel</a>
+                            <button type="submit" class="btn btn-primary">Save Address</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

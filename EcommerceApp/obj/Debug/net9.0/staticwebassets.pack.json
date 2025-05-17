@@ -5,6 +5,18 @@
       "PackagePath": "staticwebassets\\EcommerceApp.37wmp38utz.bundle.scp.css"
     },
     {
+      "Id": "D:\\VSappTest\\EcommerceApp\\wwwroot\\css\\admin.css",
+      "PackagePath": "staticwebassets\\css\\admin.css"
+    },
+    {
+      "Id": "D:\\VSappTest\\EcommerceApp\\wwwroot\\css\\footer-fix.css",
+      "PackagePath": "staticwebassets\\css\\footer-fix.css"
+    },
+    {
+      "Id": "D:\\VSappTest\\EcommerceApp\\wwwroot\\css\\payment-methods.css",
+      "PackagePath": "staticwebassets\\css\\payment-methods.css"
+    },
+    {
       "Id": "D:\\VSappTest\\EcommerceApp\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -47,6 +59,10 @@
     {
       "Id": "D:\\VSappTest\\EcommerceApp\\wwwroot\\images\\tshirt.jpg",
       "PackagePath": "staticwebassets\\images\\tshirt.jpg"
+    },
+    {
+      "Id": "D:\\VSappTest\\EcommerceApp\\wwwroot\\js\\admin.js",
+      "PackagePath": "staticwebassets\\js\\admin.js"
     },
     {
       "Id": "D:\\VSappTest\\EcommerceApp\\wwwroot\\js\\site.js",

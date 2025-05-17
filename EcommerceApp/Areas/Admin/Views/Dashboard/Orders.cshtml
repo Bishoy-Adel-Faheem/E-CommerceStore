@@ -1,0 +1,288 @@
+@model IEnumerable<EcommerceApp.Models.Order>
+@{
+    ViewData["Title"] = "Order Reports";
+}
+
+<div class="card border-0 rounded-3 shadow-sm mb-4">
+    <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+        <h5 class="card-title">Order Analysis</h5>
+        <div class="btn-group btn-group-sm">
+            <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Export
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-excel me-2"></i>Excel</a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-pdf me-2"></i>PDF</a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-text me-2"></i>CSV</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card border-0 bg-light mb-3">
+                    <div class="card-body py-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <p class="text-muted mb-0">Total Orders</p>
+                                <h3 class="mb-0">@Model.Count()</h3>
+                            </div>
+                            <div class="bg-white rounded-circle p-3">
+                                <i class="bi bi-box-seam text-primary fs-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 bg-light mb-3">
+                    <div class="card-body py-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <p class="text-muted mb-0">Total Revenue</p>
+                                <h3 class="mb-0">@Model.Sum(o => o.TotalAmount).ToString("C")</h3>
+                            </div>
+                            <div class="bg-white rounded-circle p-3">
+                                <i class="bi bi-currency-dollar text-success fs-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 bg-light mb-3">
+                    <div class="card-body py-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <p class="text-muted mb-0">Average Order Value</p>
+                                <h3 class="mb-0">@(Model.Any() ? Model.Average(o => o.TotalAmount).ToString("C") : "$0.00")</h3>
+                            </div>
+                            <div class="bg-white rounded-circle p-3">
+                                <i class="bi bi-bar-chart text-info fs-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-6">
+                <h5 class="mb-3">Orders by Status</h5>
+                <canvas id="ordersByStatusChart" height="300"></canvas>
+            </div>
+            <div class="col-md-6">
+                <h5 class="mb-3">Orders by Month</h5>
+                <canvas id="ordersByMonthChart" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card border-0 rounded-3 shadow-sm">
+    <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+        <h5 class="card-title">Orders List</h5>
+        <div class="input-group w-50">
+            <input type="text" id="orderSearchInput" class="form-control" placeholder="Search orders...">
+            <button class="btn btn-outline-secondary" type="button">
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle" id="ordersTable">
+                <thead class="bg-light">
+                    <tr>
+                        <th>Order #</th>
+                        <th>Customer</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Shipping</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var order in Model.OrderByDescending(o => o.OrderDate))
+                    {
+                        <tr>
+                            <td>#@order.Id</td>
+                            <td>@(order.User?.UserName ?? "Guest")</td>
+                            <td>@order.OrderDate.ToString("MMM dd, yyyy")</td>
+                            <td>@order.TotalAmount.ToString("C")</td>
+                            <td>
+                                <span class="badge @GetOrderStatusBadgeClass(order.Status)">
+                                    @order.Status
+                                </span>
+                            </td>
+                            <td>
+                                @if (order.ShippedDate.HasValue)
+                                {
+                                    <span>Shipped: @order.ShippedDate?.ToString("MMM dd")</span>
+                                }
+                                else
+                                {
+                                    <span class="text-muted">Not shipped</span>
+                                }
+                            </td>
+                            <td>
+                                <a asp-area="Admin" asp-controller="Order" asp-action="Details" asp-route-id="@order.Id" class="btn btn-sm btn-outline-primary">
+                                    Details
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@functions {
+    public string GetOrderStatusBadgeClass(OrderStatus status)
+    {
+        return status switch
+        {
+            OrderStatus.Pending => "bg-warning text-dark",
+            OrderStatus.Processing => "bg-info text-dark",
+            OrderStatus.Shipped => "bg-primary",
+            OrderStatus.OutForDelivery => "bg-primary",
+            OrderStatus.Delivered => "bg-success",
+            OrderStatus.Cancelled => "bg-danger",
+            OrderStatus.ReturnRequested => "bg-secondary",
+            OrderStatus.Returned => "bg-dark",
+            _ => "bg-secondary"
+        };
+    }
+}
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Chart.js defaults
+            Chart.defaults.font.family = "'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif";
+            Chart.defaults.color = '#6c757d';
+            
+            // Order status breakdown data
+            const orders = @Html.Raw(Json.Serialize(Model));
+            
+            // Calculate orders by status
+            const statusGroups = {};
+            const ordersByMonth = {};
+            
+            // Process orders
+            orders.forEach(order => {
+                // For status chart
+                const status = order.status;
+                statusGroups[status] = (statusGroups[status] || 0) + 1;
+                
+                // For monthly chart
+                const orderDate = new Date(order.orderDate);
+                const monthYear = orderDate.toLocaleDateString('en-US', { month: 'short', year: 'numeric' });
+                ordersByMonth[monthYear] = (ordersByMonth[monthYear] || 0) + 1;
+            });
+            
+            // Format data for charts
+            const statusLabels = Object.keys(statusGroups).map(status => 
+                status.replace(/([A-Z])/g, ' $1').trim()
+            );
+            const statusValues = Object.values(statusGroups);
+            
+            // Get last 6 months
+            const sortedMonths = Object.keys(ordersByMonth).sort((a, b) => {
+                const dateA = new Date(a);
+                const dateB = new Date(b);
+                return dateB - dateA;
+            }).slice(0, 6).reverse();
+            
+            const monthlyValues = sortedMonths.map(month => ordersByMonth[month]);
+            
+            // Order status chart
+            const ordersByStatusCtx = document.getElementById('ordersByStatusChart').getContext('2d');
+            new Chart(ordersByStatusCtx, {
+                type: 'pie',
+                data: {
+                    labels: statusLabels,
+                    datasets: [{
+                        data: statusValues,
+                        backgroundColor: [
+                            'rgba(255, 193, 7, 0.8)',  // Pending
+                            'rgba(13, 202, 240, 0.8)', // Processing
+                            'rgba(13, 110, 253, 0.8)', // Shipped
+                            'rgba(25, 135, 84, 0.8)',  // Delivered
+                            'rgba(220, 53, 69, 0.8)',  // Cancelled
+                            'rgba(108, 117, 125, 0.8)', // ReturnRequested
+                            'rgba(33, 37, 41, 0.8)'     // Returned
+                        ],
+                        borderColor: '#fff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                boxWidth: 12,
+                                padding: 15
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Orders by month chart
+            const ordersByMonthCtx = document.getElementById('ordersByMonthChart').getContext('2d');
+            new Chart(ordersByMonthCtx, {
+                type: 'bar',
+                data: {
+                    labels: sortedMonths,
+                    datasets: [{
+                        label: 'Orders',
+                        data: monthlyValues,
+                        backgroundColor: 'rgba(13, 110, 253, 0.7)',
+                        borderColor: 'rgba(13, 110, 253, 1)',
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Search functionality
+            document.getElementById('orderSearchInput').addEventListener('keyup', function() {
+                const searchText = this.value.toLowerCase();
+                const rows = document.querySelectorAll('#ordersTable tbody tr');
+                
+                rows.forEach(row => {
+                    const text = row.textContent.toLowerCase();
+                    row.style.display = text.includes(searchText) ? '' : 'none';
+                });
+            });
+        });
+    </script>
+}

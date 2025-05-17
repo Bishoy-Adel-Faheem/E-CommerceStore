@@ -1,0 +1,36 @@
+/* Custom styles to hide any extra elements outside the main content structure */
+
+/* Hide any text that might be showing URLs or development info */
+html::after, body::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* Hide any text that appears at the bottom of the page outside the footer */
+body::after {
+    display: none !important;
+}
+
+/* Hide elements with specific text content */
+*:not(script):not(style):not(link) {
+    visibility: visible;
+}
+
+*:not(script):not(style):not(link):contains('localhost:7195') {
+    display: none !important;
+}
+
+/* Make sure footer has no margin and sits flush at the bottom */
+footer.bg-dark {
+    margin-bottom: 0;
+    padding-bottom: 1rem !important;
+}
+
+/* Remove any bottom margin from the last element in the footer */
+footer .row:last-child {
+    margin-bottom: 0;
+}
+
+footer .row:last-child p {
+    margin-bottom: 0;
+}

@@ -1,0 +1,362 @@
+@model IEnumerable<EcommerceApp.Models.Product>
+@{
+    ViewData["Title"] = "Inventory Management";
+}
+
+<div class="card border-0 rounded-3 shadow-sm mb-4">
+    <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+        <h5 class="card-title">Inventory Overview</h5>
+        <div class="btn-group btn-group-sm">
+            <a asp-area="Admin" asp-controller="Product" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-lg me-1"></i> Add Product
+            </a>
+            <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Export
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-excel me-2"></i>Excel</a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-pdf me-2"></i>PDF</a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-file-earmark-text me-2"></i>CSV</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card border-0 bg-light mb-3">
+                    <div class="card-body py-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <p class="text-muted mb-0">Total Products</p>
+                                <h3 class="mb-0">@Model.Count()</h3>
+                            </div>
+                            <div class="bg-white rounded-circle p-3">
+                                <i class="bi bi-box text-primary fs-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-0 bg-light mb-3">
+                    <div class="card-body py-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <p class="text-muted mb-0">Out of Stock</p>
+                                <h3 class="mb-0">@Model.Count(p => p.Stock <= 0)</h3>
+                            </div>
+                            <div class="bg-white rounded-circle p-3">
+                                <i class="bi bi-x-circle text-danger fs-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-0 bg-light mb-3">
+                    <div class="card-body py-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <p class="text-muted mb-0">Low Stock</p>
+                                <h3 class="mb-0">@Model.Count(p => p.Stock > 0 && p.Stock <= 5)</h3>
+                            </div>
+                            <div class="bg-white rounded-circle p-3">
+                                <i class="bi bi-exclamation-triangle text-warning fs-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-0 bg-light mb-3">
+                    <div class="card-body py-3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <p class="text-muted mb-0">In Stock</p>
+                                <h3 class="mb-0">@Model.Count(p => p.Stock > 5)</h3>
+                            </div>
+                            <div class="bg-white rounded-circle p-3">
+                                <i class="bi bi-check-circle text-success fs-4"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-12">
+                <h5 class="mb-3">Inventory Status</h5>
+                <canvas id="inventoryStatusChart" height="100"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card border-0 rounded-3 shadow-sm">
+    <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+        <h5 class="card-title">Inventory List</h5>
+        <div class="d-flex gap-2">
+            <div class="dropdown">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-filter me-1"></i> Filter
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+                    <li><a class="dropdown-item filter-btn" data-filter="all" href="#">All Products</a></li>
+                    <li><a class="dropdown-item filter-btn" data-filter="out-of-stock" href="#">Out of Stock</a></li>
+                    <li><a class="dropdown-item filter-btn" data-filter="low-stock" href="#">Low Stock</a></li>
+                    <li><a class="dropdown-item filter-btn" data-filter="in-stock" href="#">In Stock</a></li>
+                </ul>
+            </div>
+            <div class="input-group w-auto">
+                <input type="text" id="inventorySearchInput" class="form-control" placeholder="Search products...">
+                <button class="btn btn-outline-secondary" type="button">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle" id="inventoryTable">
+                <thead class="bg-light">
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model.OrderBy(p => p.Stock))
+                    {
+                        <tr data-stock="@(product.Stock <= 0 ? "out-of-stock" : (product.Stock <= 5 ? "low-stock" : "in-stock"))">
+                            <td>
+                                <img src="@(string.IsNullOrEmpty(product.ImageUrl) ? "/images/placeholder.jpg" : product.ImageUrl)" 
+                                     alt="@product.Name" class="img-thumbnail" width="50" height="50" style="object-fit: cover;">
+                            </td>
+                            <td>@product.Name</td>
+                            <td>@product.Category.Name</td>
+                            <td>@product.Price.ToString("C")</td>
+                            <td>
+                                <div class="input-group input-group-sm">
+                                    <input type="number" class="form-control stock-input" min="0" value="@product.Stock" data-id="@product.Id">
+                                    <button class="btn btn-outline-primary update-stock-btn" type="button" data-id="@product.Id">
+                                        <i class="bi bi-check"></i>
+                                    </button>
+                                </div>
+                            </td>
+                            <td>
+                                @if (product.Stock <= 0)
+                                {
+                                    <span class="badge bg-danger">Out of Stock</span>
+                                }
+                                else if (product.Stock <= 5)
+                                {
+                                    <span class="badge bg-warning text-dark">Low Stock</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-success">In Stock</span>
+                                }
+                            </td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a asp-area="Admin" asp-controller="Product" asp-action="Edit" asp-route-id="@product.Id" class="btn btn-outline-primary">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <a href="#" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#stockHistoryModal" data-id="@product.Id">
+                                        <i class="bi bi-clock-history"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Stock History Modal -->
+<div class="modal fade" id="stockHistoryModal" tabindex="-1" aria-labelledby="stockHistoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="stockHistoryModalLabel">Stock History</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-muted">This feature will track stock changes for the selected product.</p>
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Previous Stock</th>
+                                <th>New Stock</th>
+                                <th>Change</th>
+                                <th>User</th>
+                                <th>Reason</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="6" class="text-center">No history data available yet</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Chart.js defaults
+            Chart.defaults.font.family = "'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif";
+            Chart.defaults.color = '#6c757d';
+            
+            // Inventory status data
+            const products = @Html.Raw(Json.Serialize(Model));
+            
+            // Calculate inventory status counts
+            const outOfStock = products.filter(p => p.stock <= 0).length;
+            const lowStock = products.filter(p => p.stock > 0 && p.stock <= 5).length;
+            const inStock = products.filter(p => p.stock > 5).length;
+            
+            // Inventory status chart
+            const inventoryStatusCtx = document.getElementById('inventoryStatusChart').getContext('2d');
+            new Chart(inventoryStatusCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Out of Stock', 'Low Stock', 'In Stock'],
+                    datasets: [{
+                        data: [outOfStock, lowStock, inStock],
+                        backgroundColor: [
+                            'rgba(220, 53, 69, 0.7)',
+                            'rgba(255, 193, 7, 0.7)',
+                            'rgba(25, 135, 84, 0.7)'
+                        ],
+                        borderColor: [
+                            'rgba(220, 53, 69, 1)',
+                            'rgba(255, 193, 7, 1)',
+                            'rgba(25, 135, 84, 1)'
+                        ],
+                        borderWidth: 1,
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                precision: 0
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Search functionality
+            document.getElementById('inventorySearchInput').addEventListener('keyup', function() {
+                const searchText = this.value.toLowerCase();
+                const rows = document.querySelectorAll('#inventoryTable tbody tr');
+                
+                rows.forEach(row => {
+                    const text = row.textContent.toLowerCase();
+                    row.style.display = text.includes(searchText) ? '' : 'none';
+                });
+            });
+            
+            // Filter functionality
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const filter = this.getAttribute('data-filter');
+                    const rows = document.querySelectorAll('#inventoryTable tbody tr');
+                    
+                    rows.forEach(row => {
+                        if (filter === 'all') {
+                            row.style.display = '';
+                        } else {
+                            const stockStatus = row.getAttribute('data-stock');
+                            row.style.display = (stockStatus === filter) ? '' : 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Mock update stock functionality
+            document.querySelectorAll('.update-stock-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const productId = this.getAttribute('data-id');
+                    const input = document.querySelector(`.stock-input[data-id="${productId}"]`);
+                    const newStock = parseInt(input.value);
+                    
+                    // Show notification
+                    const toast = `
+                        <div class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="d-flex">
+                                <div class="toast-body">
+                                    <i class="bi bi-check-circle-fill me-2"></i>
+                                    Stock updated successfully!
+                                </div>
+                                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                        </div>
+                    `;
+                    
+                    const toastContainer = document.querySelector('.toast-container');
+                    toastContainer.innerHTML += toast;
+                    
+                    const toastElement = toastContainer.querySelector('.toast:last-child');
+                    const bsToast = new bootstrap.Toast(toastElement, { delay: 3000 });
+                    bsToast.show();
+                    
+                    // Update the row's stock status
+                    const row = btn.closest('tr');
+                    let newStatus = 'in-stock';
+                    let badgeClass = 'bg-success';
+                    let badgeText = 'In Stock';
+                    
+                    if (newStock <= 0) {
+                        newStatus = 'out-of-stock';
+                        badgeClass = 'bg-danger';
+                        badgeText = 'Out of Stock';
+                    } else if (newStock <= 5) {
+                        newStatus = 'low-stock';
+                        badgeClass = 'bg-warning text-dark';
+                        badgeText = 'Low Stock';
+                    }
+                    
+                    row.setAttribute('data-stock', newStatus);
+                    const statusBadge = row.querySelector('.badge');
+                    statusBadge.className = `badge ${badgeClass}`;
+                    statusBadge.textContent = badgeText;
+                });
+            });
+        });
+    </script>
+}

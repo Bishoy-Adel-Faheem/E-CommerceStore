@@ -1,0 +1,183 @@
+@{
+    ViewData["Title"] = "Shipping Information";
+}
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="text-center mb-5">Shipping Information</h1>
+            
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-5">
+                    <h2 class="h4 mb-4">Shipping Options</h2>
+                    <p>At EcommerceApp, we offer several shipping options to meet your needs:</p>
+                    
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Shipping Method</th>
+                                    <th>Estimated Delivery Time</th>
+                                    <th>Cost</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Standard Shipping</td>
+                                    <td>3-5 business days</td>
+                                    <td>$5.99 (Free for orders over $50)</td>
+                                </tr>
+                                <tr>
+                                    <td>Express Shipping</td>
+                                    <td>2-3 business days</td>
+                                    <td>$9.99</td>
+                                </tr>
+                                <tr>
+                                    <td>Priority Shipping</td>
+                                    <td>1-2 business days</td>
+                                    <td>$14.99</td>
+                                </tr>
+                                <tr>
+                                    <td>International Shipping</td>
+                                    <td>7-14 business days</td>
+                                    <td>Starting at $19.99 (varies by country)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <p class="text-muted mt-3">
+                        <small>* Delivery times are estimates and may vary based on your location and other factors. 
+                        Business days do not include weekends or holidays.</small>
+                    </p>
+                </div>
+            </div>
+            
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-5">
+                    <h2 class="h4 mb-4">Shipping Carriers</h2>
+                    <p>We partner with several reliable shipping carriers to ensure your orders arrive safely and on time:</p>
+                    
+                    <ul class="list-group list-group-flush mb-4">
+                        <li class="list-group-item border-0 ps-0">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-truck fs-4 me-3 text-primary"></i>
+                                <div>
+                                    <h5 class="mb-1">USPS</h5>
+                                    <p class="mb-0 text-muted">Used primarily for standard shipping and small packages.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item border-0 ps-0">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-truck fs-4 me-3 text-primary"></i>
+                                <div>
+                                    <h5 class="mb-1">UPS</h5>
+                                    <p class="mb-0 text-muted">Used for express and priority shipping options.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item border-0 ps-0">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-truck fs-4 me-3 text-primary"></i>
+                                <div>
+                                    <h5 class="mb-1">FedEx</h5>
+                                    <p class="mb-0 text-muted">Used for priority shipping and international orders.</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="list-group-item border-0 ps-0">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-truck fs-4 me-3 text-primary"></i>
+                                <div>
+                                    <h5 class="mb-1">DHL</h5>
+                                    <p class="mb-0 text-muted">Primarily used for international shipments.</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    
+                    <p>The carrier selected for your order will depend on your shipping method, location, and the size of your package. You'll receive tracking information once your order ships.</p>
+                </div>
+            </div>
+            
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-5">
+                    <h2 class="h4 mb-4">Order Processing</h2>
+                    <p>Here's what to expect after you place your order:</p>
+                    
+                    <div class="row g-4 mt-2">
+                        <div class="col-md-3 text-center">
+                            <div class="bg-light rounded-circle p-3 d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+                                <i class="bi bi-cart-check fs-2 text-primary"></i>
+                            </div>
+                            <h5>Order Placed</h5>
+                            <p class="text-muted small">You'll receive an order confirmation email.</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <div class="bg-light rounded-circle p-3 d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+                                <i class="bi bi-credit-card fs-2 text-primary"></i>
+                            </div>
+                            <h5>Payment Processed</h5>
+                            <p class="text-muted small">Usually within minutes of ordering.</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <div class="bg-light rounded-circle p-3 d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+                                <i class="bi bi-box-seam fs-2 text-primary"></i>
+                            </div>
+                            <h5>Order Prepared</h5>
+                            <p class="text-muted small">Your items are packaged for shipping.</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <div class="bg-light rounded-circle p-3 d-flex align-items-center justify-content-center mx-auto mb-3" style="width: 80px; height: 80px;">
+                                <i class="bi bi-truck fs-2 text-primary"></i>
+                            </div>
+                            <h5>Order Shipped</h5>
+                            <p class="text-muted small">You'll receive tracking information.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="alert alert-info mt-4">
+                        <i class="bi bi-info-circle me-2"></i>
+                        Most orders are processed and shipped within 1-2 business days after payment is confirmed.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-5">
+                    <h2 class="h4 mb-4">International Shipping</h2>
+                    <p>We ship to most countries worldwide. Please note the following important information about international orders:</p>
+                    
+                    <ul class="mb-4">
+                        <li class="mb-2">International delivery times typically range from 7-14 business days, depending on the destination country.</li>
+                        <li class="mb-2">Customs duties, taxes, and import fees are not included in our shipping costs and are the responsibility of the recipient.</li>
+                        <li class="mb-2">These additional fees vary by country and are collected by the carrier or customs authority upon delivery.</li>
+                        <li class="mb-2">Some countries may have restrictions on certain products. Please check your local regulations before ordering.</li>
+                        <li class="mb-2">International tracking is provided for all international shipments.</li>
+                    </ul>
+                    
+                    <div class="alert alert-warning">
+                        <i class="bi bi-exclamation-triangle me-2"></i>
+                        Please provide accurate contact information for international orders to ensure smooth customs processing and delivery.
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-5">
+                    <h2 class="h4 mb-4">Tracking Your Order</h2>
+                    <p>Once your order ships, you can track it in several ways:</p>
+                    
+                    <ul class="mb-4">
+                        <li class="mb-2">Click the tracking link in your shipping confirmation email.</li>
+                        <li class="mb-2">Log in to your account and view your order details in the "My Orders" section.</li>
+                        <li class="mb-2">Contact our customer service team with your order number.</li>
+                    </ul>
+                    
+                    <p>If you have any questions about your shipment, please <a asp-controller="Home" asp-action="Contact">contact us</a> and include your order number for faster assistance.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

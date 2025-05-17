@@ -32,11 +32,39 @@ public class HomeController : Controller
 
         // Take only a few featured products for the home page
         return View(featuredProducts.Take(8).ToList());
-    }
-
-    public IActionResult Privacy()
+    }    public IActionResult Privacy()
     {
         return View();
+    }
+
+    public IActionResult AboutUs()
+    {
+        return View();
+    }
+
+    public IActionResult Contact()
+    {
+        return View();
+    }
+
+    public IActionResult FAQ()
+    {
+        return View();
+    }
+
+    public IActionResult Terms()
+    {
+        return View();
+    }
+
+    public IActionResult ShippingInfo()
+    {
+        return View("ShippingInfo");
+    }
+
+    public IActionResult Returns()
+    {
+        return View("Returns");
     }
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

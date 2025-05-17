@@ -51,6 +51,12 @@ namespace EcommerceApp.Controllers
                         {
                             await _cartService.MigrateCartAsync(anonymousCartId, user.Id);
                         }
+                        
+                        // Check if user is in Admin role and redirect to admin dashboard
+                        if (await _userManager.IsInRoleAsync(user, "Admin"))
+                        {
+                            return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
+                        }
                     }
                     
                     if (string.IsNullOrEmpty(model.ReturnUrl))
@@ -94,15 +100,22 @@ namespace EcommerceApp.Controllers
                 };
                 
                 var result = await _userManager.CreateAsync(user, model.Password);
-                
-                if (result.Succeeded)
+                  if (result.Succeeded)
                 {
                     // Sign in the user
-                    await _signInManager.SignInAsync(user, isPersistent: false);                    // Migrate cart items from anonymous session to user account
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    
+                    // Migrate cart items from anonymous session to user account
                     var anonymousCartId = Microsoft.AspNetCore.Http.SessionExtensions.GetString(HttpContext.Session, "CartId");
                     if (!string.IsNullOrEmpty(anonymousCartId))
                     {
                         await _cartService.MigrateCartAsync(anonymousCartId, user.Id);
+                    }
+                    
+                    // Check if user is in Admin role and redirect to admin dashboard
+                    if (await _userManager.IsInRoleAsync(user, "Admin"))
+                    {
+                        return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
                     }
                     
                     return RedirectToAction("Index", "Home");

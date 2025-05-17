@@ -1,0 +1,395 @@
+@model EcommerceApp.ViewModels.DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<!-- Key Metrics -->
+<div class="row mb-4">
+    <div class="col-md-3">
+        <div class="card border-0 rounded-3 shadow-sm h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0 me-3">
+                        <div class="bg-primary bg-opacity-10 p-3 rounded-3">
+                            <i class="bi bi-currency-dollar text-primary fs-3"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="card-text text-muted mb-0">Total Sales</p>
+                        <h3 class="card-title mb-0">@Model.TotalSales.ToString("C")</h3>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <span class="badge @(Model.SalesGrowthRate >= 0 ? "bg-success" : "bg-danger")">
+                        <i class="bi @(Model.SalesGrowthRate >= 0 ? "bi-graph-up-arrow" : "bi-graph-down-arrow")"></i>
+                        @Math.Abs(Model.SalesGrowthRate).ToString("0.0")%
+                    </span>
+                    <span class="text-muted small ms-1">vs last month</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 rounded-3 shadow-sm h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0 me-3">
+                        <div class="bg-info bg-opacity-10 p-3 rounded-3">
+                            <i class="bi bi-box-seam text-info fs-3"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="card-text text-muted mb-0">Total Orders</p>
+                        <h3 class="card-title mb-0">@Model.TotalOrders</h3>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <span class="text-muted small">Avg. Order Value: @Model.AvgOrderValue.ToString("C")</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 rounded-3 shadow-sm h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0 me-3">
+                        <div class="bg-success bg-opacity-10 p-3 rounded-3">
+                            <i class="bi bi-grid text-success fs-3"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="card-text text-muted mb-0">Products</p>
+                        <h3 class="card-title mb-0">@Model.TotalProducts</h3>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <span class="text-muted small">In @Model.TotalCategories categories</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card border-0 rounded-3 shadow-sm h-100">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0 me-3">
+                        <div class="bg-warning bg-opacity-10 p-3 rounded-3">
+                            <i class="bi bi-exclamation-triangle text-warning fs-3"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <p class="card-text text-muted mb-0">Stock Alerts</p>
+                        <h3 class="card-title mb-0">@Model.LowStockProductsCount</h3>
+                    </div>
+                </div>
+                <div class="mt-3">
+                    <span class="text-danger small">@Model.OutOfStockProductsCount out of stock</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Sales Chart -->
+    <div class="col-lg-8 mb-4">
+        <div class="card border-0 rounded-3 shadow-sm h-100">
+            <div class="card-header bg-white border-0 pt-4 pb-0">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="card-title">Sales Overview</h5>
+                    <div class="btn-group btn-group-sm" role="group" aria-label="Time period">
+                        <button type="button" class="btn btn-outline-secondary active" id="daily-btn">Daily</button>
+                        <button type="button" class="btn btn-outline-secondary" id="monthly-btn">Monthly</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <canvas id="salesChart" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Status Breakdown -->
+    <div class="col-lg-4 mb-4">
+        <div class="card border-0 rounded-3 shadow-sm h-100">
+            <div class="card-header bg-white border-0 pt-4 pb-0">
+                <h5 class="card-title">Order Status</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="orderStatusChart" height="300"></canvas>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Recent Orders -->
+    <div class="col-lg-8 mb-4">
+        <div class="card border-0 rounded-3 shadow-sm h-100">
+            <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+                <h5 class="card-title">Recent Orders</h5>
+                <a asp-area="Admin" asp-controller="Order" asp-action="Index" class="btn btn-sm btn-outline-primary">View All</a>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover align-middle mb-0">
+                        <thead class="bg-light">
+                            <tr>
+                                <th>Order #</th>
+                                <th>Customer</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var order in Model.RecentOrders)
+                            {
+                                <tr>
+                                    <td>#@order.Id</td>
+                                    <td>@(order.User?.UserName ?? "Guest")</td>
+                                    <td>@order.OrderDate.ToString("MMM dd, yyyy")</td>
+                                    <td>@order.TotalAmount.ToString("C")</td>
+                                    <td>
+                                        <span class="badge @GetOrderStatusBadgeClass(order.Status)">
+                                            @order.Status
+                                        </span>
+                                    </td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="Order" asp-action="Details" asp-route-id="@order.Id" class="btn btn-sm btn-outline-secondary">
+                                            Details
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Selling Products -->
+    <div class="col-lg-4 mb-4">
+        <div class="card border-0 rounded-3 shadow-sm h-100">
+            <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+                <h5 class="card-title">Top Selling Products</h5>
+                <a asp-area="Admin" asp-controller="Dashboard" asp-action="Products" class="btn btn-sm btn-outline-primary">View All</a>
+            </div>
+            <div class="card-body p-0">
+                <div class="list-group list-group-flush">
+                    @foreach (var product in Model.TopSellingProducts)
+                    {
+                        <a href="#" class="list-group-item list-group-item-action py-3">
+                            <div class="d-flex w-100 align-items-center">
+                                <div class="flex-shrink-0 me-3">
+                                    <img src="@(string.IsNullOrEmpty(product.ImageUrl) ? "/images/placeholder.jpg" : product.ImageUrl)" alt="@product.ProductName" class="img-thumbnail" style="width: 50px; height: 50px; object-fit: cover;">
+                                </div>
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1">@product.ProductName</h6>
+                                    <div class="d-flex justify-content-between">
+                                        <small class="text-muted">@product.QuantitySold sold</small>
+                                        <span class="text-primary">@product.TotalRevenue.ToString("C")</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@functions {
+    public string GetOrderStatusBadgeClass(OrderStatus status)
+    {
+        return status switch
+        {
+            OrderStatus.Pending => "bg-warning text-dark",
+            OrderStatus.Processing => "bg-info text-dark",
+            OrderStatus.Shipped => "bg-primary",
+            OrderStatus.Delivered => "bg-success",
+            OrderStatus.Cancelled => "bg-danger",
+            OrderStatus.ReturnRequested => "bg-secondary",
+            OrderStatus.Returned => "bg-dark",
+            _ => "bg-secondary"
+        };
+    }
+}
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Chart.js defaults
+            Chart.defaults.font.family = "'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif";
+            Chart.defaults.color = '#6c757d';
+            
+            // Parse data from the model
+            const dailyData = @Html.Raw(Json.Serialize(Model.DailySalesData));
+            const monthlyData = @Html.Raw(Json.Serialize(Model.MonthlySalesData));
+            const orderStatusData = @Html.Raw(Json.Serialize(Model.OrderStatusBreakdown));
+            
+            // Format daily data
+            const dailyLabels = Object.keys(dailyData).map(date => new Date(date).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }));
+            const dailyValues = Object.values(dailyData);
+            
+            // Format monthly data
+            const monthlyLabels = Object.keys(monthlyData);
+            const monthlyValues = Object.values(monthlyData);
+            
+            // Format order status data
+            const statusLabels = Object.keys(orderStatusData).map(status => status.replace(/([A-Z])/g, ' $1').trim());
+            const statusValues = Object.values(orderStatusData);
+            
+            // Sales Chart
+            const salesChartCtx = document.getElementById('salesChart').getContext('2d');
+            const salesChart = new Chart(salesChartCtx, {
+                type: 'line',
+                data: {
+                    labels: dailyLabels,
+                    datasets: [{
+                        label: 'Sales',
+                        data: dailyValues,
+                        backgroundColor: 'rgba(13, 110, 253, 0.1)',
+                        borderColor: 'rgba(13, 110, 253, 1)',
+                        borderWidth: 2,
+                        tension: 0.4,
+                        fill: true,
+                        pointBackgroundColor: '#fff',
+                        pointBorderColor: 'rgba(13, 110, 253, 1)',
+                        pointBorderWidth: 2,
+                        pointRadius: 4,
+                        pointHoverRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed.y);
+                                    }
+                                    return label;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            grid: {
+                                display: false
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '$' + value;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Switch between daily and monthly data
+            document.getElementById('daily-btn').addEventListener('click', function() {
+                this.classList.add('active');
+                document.getElementById('monthly-btn').classList.remove('active');
+                salesChart.data.labels = dailyLabels;
+                salesChart.data.datasets[0].data = dailyValues;
+                salesChart.update();
+            });
+            
+            document.getElementById('monthly-btn').addEventListener('click', function() {
+                this.classList.add('active');
+                document.getElementById('daily-btn').classList.remove('active');
+                salesChart.data.labels = monthlyLabels;
+                salesChart.data.datasets[0].data = monthlyValues;
+                salesChart.update();
+            });
+            
+            // Order Status Chart
+            const orderStatusChartCtx = document.getElementById('orderStatusChart').getContext('2d');
+            new Chart(orderStatusChartCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: statusLabels,
+                    datasets: [{
+                        data: statusValues,
+                        backgroundColor: [
+                            'rgba(255, 193, 7, 0.8)',  // Pending
+                            'rgba(13, 202, 240, 0.8)', // Processing
+                            'rgba(13, 110, 253, 0.8)', // Shipped
+                            'rgba(25, 135, 84, 0.8)',  // Delivered
+                            'rgba(220, 53, 69, 0.8)',  // Cancelled
+                            'rgba(108, 117, 125, 0.8)', // ReturnRequested
+                            'rgba(33, 37, 41, 0.8)'     // Returned
+                        ],
+                        borderColor: '#fff',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    cutout: '70%',
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                            labels: {
+                                boxWidth: 12,
+                                padding: 15
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+}
+
+@section Styles {
+    <style>
+        .admin-panel .card {
+            transition: all 0.3s;
+        }
+        
+        .admin-panel .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 .5rem 1rem rgba(0,0,0,.15) !important;
+        }
+        
+        .admin-panel .nav-link.active {
+            background-color: rgba(13, 110, 253, 0.1);
+            color: #0d6efd !important;
+            font-weight: 600;
+        }
+        
+        .admin-panel .nav-link {
+            color: rgba(255, 255, 255, 0.8);
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .admin-panel .nav-link:hover:not(.active) {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+}

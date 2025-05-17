@@ -296,7 +296,12 @@ D:\VSappTest\EcommerceApp\obj\Debug\net9.0\refint\EcommerceApp.dll
 D:\VSappTest\EcommerceApp\obj\Debug\net9.0\EcommerceApp.pdb
 D:\VSappTest\EcommerceApp\obj\Debug\net9.0\EcommerceApp.genruntimeconfig.cache
 D:\VSappTest\EcommerceApp\obj\Debug\net9.0\ref\EcommerceApp.dll
-D:\VSappTest\EcommerceApp\obj\Debug\net9.0\compressed\1h8i5tfkra-sgfnk0v406.gz
 D:\VSappTest\EcommerceApp\obj\Debug\net9.0\compressed\6yg7n7cstq-1e40rkpulh.gz
 D:\VSappTest\EcommerceApp\obj\Debug\net9.0\compressed\7p1hctp2wz-2rkhc1xym1.gz
 D:\VSappTest\EcommerceApp\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
+D:\VSappTest\EcommerceApp\obj\Debug\net9.0\EcommerceApp.sourcelink.json
+D:\VSappTest\EcommerceApp\obj\Debug\net9.0\compressed\4i70nu1v6l-c6yn3pm5xi.gz
+D:\VSappTest\EcommerceApp\obj\Debug\net9.0\compressed\z35o7gykkj-66rowf26fh.gz
+D:\VSappTest\EcommerceApp\obj\Debug\net9.0\compressed\9ey0j1gj3k-vgbzhe7nnr.gz
+D:\VSappTest\EcommerceApp\obj\Debug\net9.0\compressed\2urbz3hmxe-i6b8oat2xs.gz
+D:\VSappTest\EcommerceApp\obj\Debug\net9.0\compressed\1h8i5tfkra-own2khg6tn.gz

@@ -1,0 +1,213 @@
+@{
+    ViewData["Title"] = "Frequently Asked Questions";
+}
+
+<div class="container py-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="text-center mb-5">Frequently Asked Questions</h1>
+            
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-5">
+                    <h2 class="h4 mb-4">Ordering & Payment</h2>
+                    
+                    <div class="accordion" id="accordionOrdering">
+                        <div class="accordion-item border-0 mb-3">
+                            <h3 class="accordion-header" id="headingOne">
+                                <button class="accordion-button rounded shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    How do I place an order?
+                                </button>
+                            </h3>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionOrdering">
+                                <div class="accordion-body">
+                                    <p>Placing an order on EcommerceApp is easy! Follow these steps:</p>
+                                    <ol>
+                                        <li>Browse our products and add items to your cart</li>
+                                        <li>Click the cart icon to review your items</li>
+                                        <li>Click "Proceed to Checkout"</li>
+                                        <li>Fill in your shipping and payment information</li>
+                                        <li>Review your order and click "Place Order"</li>
+                                    </ol>
+                                    <p>Once your order is placed, you'll receive an order confirmation email with details of your purchase.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item border-0 mb-3">
+                            <h3 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed rounded shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    What payment methods do you accept?
+                                </button>
+                            </h3>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionOrdering">
+                                <div class="accordion-body">
+                                    <p>We accept the following payment methods:</p>
+                                    <ul>
+                                        <li>Credit cards (Visa, MasterCard, American Express, Discover)</li>
+                                        <li>PayPal</li>
+                                        <li>Apple Pay</li>
+                                        <li>Google Pay</li>
+                                    </ul>
+                                    <p>All payments are securely processed and your financial information is never stored on our servers.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item border-0 mb-3">
+                            <h3 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed rounded shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Is it safe to use my credit card on your website?
+                                </button>
+                            </h3>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionOrdering">
+                                <div class="accordion-body">
+                                    <p>Absolutely! We take your security seriously. Our website uses industry-standard SSL encryption to protect your personal and payment information. We are PCI DSS compliant, which means we follow all required security practices to keep your credit card data safe.</p>
+                                    <p>Additionally, we never store your full credit card details on our servers.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-5">
+                    <h2 class="h4 mb-4">Shipping & Delivery</h2>
+                    
+                    <div class="accordion" id="accordionShipping">
+                        <div class="accordion-item border-0 mb-3">
+                            <h3 class="accordion-header" id="headingFour">
+                                <button class="accordion-button rounded shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                                    How long will it take to receive my order?
+                                </button>
+                            </h3>
+                            <div id="collapseFour" class="accordion-collapse collapse show" aria-labelledby="headingFour" data-bs-parent="#accordionShipping">
+                                <div class="accordion-body">
+                                    <p>Standard shipping typically takes 3-5 business days after your order has been processed. Expedited shipping options are available at checkout:</p>
+                                    <ul>
+                                        <li>Express Shipping: 2-3 business days</li>
+                                        <li>Priority Shipping: 1-2 business days</li>
+                                    </ul>
+                                    <p>Please note that delivery times may be longer for international shipments or during peak seasons.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item border-0 mb-3">
+                            <h3 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed rounded shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                    Do you ship internationally?
+                                </button>
+                            </h3>
+                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionShipping">
+                                <div class="accordion-body">
+                                    <p>Yes, we ship to most countries worldwide. International shipping typically takes 7-14 business days, depending on the destination and customs processing times.</p>
+                                    <p>Please note that international orders may be subject to import duties, taxes, and customs fees, which are the responsibility of the recipient.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card border-0 shadow-sm mb-4">
+                <div class="card-body p-5">
+                    <h2 class="h4 mb-4">Returns & Refunds</h2>
+                    
+                    <div class="accordion" id="accordionReturns">
+                        <div class="accordion-item border-0 mb-3">
+                            <h3 class="accordion-header" id="headingSix">
+                                <button class="accordion-button rounded shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="true" aria-controls="collapseSix">
+                                    What is your return policy?
+                                </button>
+                            </h3>
+                            <div id="collapseSix" class="accordion-collapse collapse show" aria-labelledby="headingSix" data-bs-parent="#accordionReturns">
+                                <div class="accordion-body">
+                                    <p>We offer a 30-day return policy for most items. If you're not completely satisfied with your purchase, you can return it within 30 days of delivery for a full refund or exchange.</p>
+                                    <p>Items must be in their original condition with all tags and packaging intact. Certain products, such as personalized items or intimate apparel, may not be eligible for return for hygiene reasons.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item border-0">
+                            <h3 class="accordion-header" id="headingSeven">
+                                <button class="accordion-button collapsed rounded shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                                    How do I request a return or refund?
+                                </button>
+                            </h3>
+                            <div id="collapseSeven" class="accordion-collapse collapse" aria-labelledby="headingSeven" data-bs-parent="#accordionReturns">
+                                <div class="accordion-body">
+                                    <p>To initiate a return:</p>
+                                    <ol>
+                                        <li>Log in to your account and go to "My Orders"</li>
+                                        <li>Find the order containing the item you want to return</li>
+                                        <li>Select "Return Items" and follow the instructions</li>
+                                        <li>Print the return shipping label (if applicable)</li>
+                                        <li>Package the item securely and attach the return label</li>
+                                        <li>Drop off the package at the specified carrier location</li>
+                                    </ol>
+                                    <p>Once we receive and inspect your return, we'll process your refund. Refunds typically take 5-10 business days to appear on your original payment method.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card border-0 shadow-sm">
+                <div class="card-body p-5">
+                    <h2 class="h4 mb-4">Account & Technical Issues</h2>
+                    
+                    <div class="accordion" id="accordionAccount">
+                        <div class="accordion-item border-0 mb-3">
+                            <h3 class="accordion-header" id="headingEight">
+                                <button class="accordion-button rounded shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="true" aria-controls="collapseEight">
+                                    How do I create an account?
+                                </button>
+                            </h3>
+                            <div id="collapseEight" class="accordion-collapse collapse show" aria-labelledby="headingEight" data-bs-parent="#accordionAccount">
+                                <div class="accordion-body">
+                                    <p>Creating an account is simple:</p>
+                                    <ol>
+                                        <li>Click on "Register" in the top-right corner of the website</li>
+                                        <li>Enter your email address and create a password</li>
+                                        <li>Fill in your personal information</li>
+                                        <li>Click "Create Account"</li>
+                                    </ol>
+                                    <p>You'll receive a confirmation email to verify your account. Once verified, you can log in and start shopping!</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="accordion-item border-0">
+                            <h3 class="accordion-header" id="headingNine">
+                                <button class="accordion-button collapsed rounded shadow-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                                    I forgot my password. How do I reset it?
+                                </button>
+                            </h3>
+                            <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine" data-bs-parent="#accordionAccount">
+                                <div class="accordion-body">
+                                    <p>To reset your password:</p>
+                                    <ol>
+                                        <li>Click on "Login" in the top-right corner</li>
+                                        <li>Click on "Forgot Password?"</li>
+                                        <li>Enter the email address associated with your account</li>
+                                        <li>Check your email for a password reset link</li>
+                                        <li>Click the link and follow the instructions to create a new password</li>
+                                    </ol>
+                                    <p>If you don't receive the email within a few minutes, check your spam folder or contact our customer support for assistance.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <h4>Still have questions?</h4>
+                <p class="mb-4">Our customer support team is here to help!</p>
+                <a asp-controller="Home" asp-action="Contact" class="btn btn-primary">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</div>

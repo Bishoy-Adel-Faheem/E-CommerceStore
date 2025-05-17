@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "IDMRqoI8TPvFdbhonLy7bErbObbUnv/vVNE8DbKXYLE=",
+  "Hash": "UgBq2+7pFkUgfULnveqe3hd/i+YdwEOGktA8FFghAa4=",
   "Source": "EcommerceApp",
   "BasePath": "_content/EcommerceApp",
   "Mode": "Default",
@@ -1487,12 +1487,12 @@
       "OriginalItemSpec": "C:\\Users\\bish0\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\9.0.5\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
     },
     {
-      "Identity": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\1h8i5tfkra-sgfnk0v406.gz",
+      "Identity": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\1h8i5tfkra-own2khg6tn.gz",
       "SourceId": "EcommerceApp",
       "SourceType": "Discovered",
       "ContentRoot": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\",
       "BasePath": "_content/EcommerceApp",
-      "RelativePath": "css/site#[.{fingerprint=sgfnk0v406}]?.css.gz",
+      "RelativePath": "css/site#[.{fingerprint=own2khg6tn}]?.css.gz",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Alternative",
@@ -1501,8 +1501,8 @@
       "RelatedAsset": "D:\\VSappTest\\EcommerceApp\\wwwroot\\css\\site.css",
       "AssetTraitName": "Content-Encoding",
       "AssetTraitValue": "gzip",
-      "Fingerprint": "wil22metwn",
-      "Integrity": "eFP79BePQCtLzi9XRAzRZNKr08rfKVQ13Am2duaFsJ8=",
+      "Fingerprint": "yiusdibaeg",
+      "Integrity": "dpEMLsU5HH3ZqgiZ9A80DH/PAAe5oMV9IE8exCMxfAo=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\VSappTest\\EcommerceApp\\wwwroot\\css\\site.css"
@@ -1592,6 +1592,27 @@
       "OriginalItemSpec": "C:\\Users\\bish0\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\9.0.5\\staticwebassets\\V5\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
     },
     {
+      "Identity": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\2urbz3hmxe-i6b8oat2xs.gz",
+      "SourceId": "EcommerceApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/EcommerceApp",
+      "RelativePath": "css/footer-fix#[.{fingerprint=i6b8oat2xs}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "D:\\VSappTest\\EcommerceApp\\wwwroot\\css\\footer-fix.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "mpk3r8s2vl",
+      "Integrity": "mubAVr6dMdI7fLj+96u9rgMquBO12T/maBmOrATIC1c=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "D:\\VSappTest\\EcommerceApp\\wwwroot\\css\\footer-fix.css"
+    },
+    {
       "Identity": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\3kkf9ebp5w-y7v9cxd14o.gz",
       "SourceId": "EcommerceApp",
       "SourceType": "Discovered",
@@ -1674,6 +1695,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "C:\\Users\\bish0\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\9.0.5\\staticwebassets\\V5\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Identity": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\4i70nu1v6l-c6yn3pm5xi.gz",
+      "SourceId": "EcommerceApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/EcommerceApp",
+      "RelativePath": "css/admin#[.{fingerprint=c6yn3pm5xi}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "D:\\VSappTest\\EcommerceApp\\wwwroot\\css\\admin.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "1cozn44nff",
+      "Integrity": "D5NvnTCVIwi2FFGNhLWPJmNIzpIXo8+zarE6gV6sZb4=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "D:\\VSappTest\\EcommerceApp\\wwwroot\\css\\admin.css"
     },
     {
       "Identity": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\4pcw0vmsab-c2oey78nd0.gz",
@@ -1989,6 +2031,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\VSappTest\\EcommerceApp\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Identity": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\9ey0j1gj3k-vgbzhe7nnr.gz",
+      "SourceId": "EcommerceApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/EcommerceApp",
+      "RelativePath": "css/payment-methods#[.{fingerprint=vgbzhe7nnr}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "D:\\VSappTest\\EcommerceApp\\wwwroot\\css\\payment-methods.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "sfs9z7d6b1",
+      "Integrity": "OMdaAOREhJNrNwRq6apPc6Qf+nl2m8l0a/VHGyF5WFM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "D:\\VSappTest\\EcommerceApp\\wwwroot\\css\\payment-methods.css"
     },
     {
       "Identity": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\9glsckmvxo-aexeepp0ev.gz",
@@ -3902,6 +3965,27 @@
       "OriginalItemSpec": "C:\\Users\\bish0\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\9.0.5\\staticwebassets\\V5\\lib\\jquery-validation\\dist\\additional-methods.js"
     },
     {
+      "Identity": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\z35o7gykkj-66rowf26fh.gz",
+      "SourceId": "EcommerceApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/EcommerceApp",
+      "RelativePath": "js/admin#[.{fingerprint=66rowf26fh}]?.js.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "D:\\VSappTest\\EcommerceApp\\wwwroot\\js\\admin.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "fjdmd6bava",
+      "Integrity": "CyMYfTqt3JRJZ1CATsEBDtCnUEnfLgjj9+alqH9kBhg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "D:\\VSappTest\\EcommerceApp\\wwwroot\\js\\admin.js"
+    },
+    {
       "Identity": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\z408qb6q7a-pk9g2wxc8p.gz",
       "SourceId": "Microsoft.AspNetCore.Identity.UI",
       "SourceType": "Package",
@@ -4049,6 +4133,69 @@
       "OriginalItemSpec": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\scopedcss\\projectbundle\\EcommerceApp.bundle.scp.css"
     },
     {
+      "Identity": "D:\\VSappTest\\EcommerceApp\\wwwroot\\css\\admin.css",
+      "SourceId": "EcommerceApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\VSappTest\\EcommerceApp\\wwwroot\\",
+      "BasePath": "_content/EcommerceApp",
+      "RelativePath": "css/admin#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "c6yn3pm5xi",
+      "Integrity": "PGxMY79sTOjs+dUrY0js6D6e6C2ZwQClA0hiGtMqpr8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\admin.css"
+    },
+    {
+      "Identity": "D:\\VSappTest\\EcommerceApp\\wwwroot\\css\\footer-fix.css",
+      "SourceId": "EcommerceApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\VSappTest\\EcommerceApp\\wwwroot\\",
+      "BasePath": "_content/EcommerceApp",
+      "RelativePath": "css/footer-fix#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "i6b8oat2xs",
+      "Integrity": "mrrZAWYfr/1Ijzmg+bJEDOXZtphSJQoc1qgBezH8dhc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\footer-fix.css"
+    },
+    {
+      "Identity": "D:\\VSappTest\\EcommerceApp\\wwwroot\\css\\payment-methods.css",
+      "SourceId": "EcommerceApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\VSappTest\\EcommerceApp\\wwwroot\\",
+      "BasePath": "_content/EcommerceApp",
+      "RelativePath": "css/payment-methods#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "vgbzhe7nnr",
+      "Integrity": "z/1VQcqrW3sEzpyAkt4J28QTsi3QQEe+0Sy5J350rfM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\payment-methods.css"
+    },
+    {
       "Identity": "D:\\VSappTest\\EcommerceApp\\wwwroot\\css\\site.css",
       "SourceId": "EcommerceApp",
       "SourceType": "Discovered",
@@ -4063,8 +4210,8 @@
       "RelatedAsset": "",
       "AssetTraitName": "",
       "AssetTraitValue": "",
-      "Fingerprint": "sgfnk0v406",
-      "Integrity": "9M16YVDiODbavwdxvMeSkfgRVLhGiLd+vGoWDMAb2XM=",
+      "Fingerprint": "own2khg6tn",
+      "Integrity": "eCK5R5+/nUWV2pxJN44Oj8fLqbk6JSZUA1PH8xs35jc=",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\site.css"
@@ -4278,6 +4425,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\tshirt.jpg"
+    },
+    {
+      "Identity": "D:\\VSappTest\\EcommerceApp\\wwwroot\\js\\admin.js",
+      "SourceId": "EcommerceApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\VSappTest\\EcommerceApp\\wwwroot\\",
+      "BasePath": "_content/EcommerceApp",
+      "RelativePath": "js/admin#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "66rowf26fh",
+      "Integrity": "cgRk+4pRBrvg4goEZ0JupeMmfi76TVikk5xehO22atA=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\admin.js"
     },
     {
       "Identity": "D:\\VSappTest\\EcommerceApp\\wwwroot\\js\\site.js",
@@ -5605,13 +5773,13 @@
   ],
   "Endpoints": [
     {
-      "Route": "css/site.css",
-      "AssetFile": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\1h8i5tfkra-sgfnk0v406.gz",
+      "Route": "css/admin.c6yn3pm5xi.css",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\4i70nu1v6l-c6yn3pm5xi.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.001449275362"
+          "Quality": "0.001592356688"
         }
       ],
       "ResponseHeaders": [
@@ -5621,15 +5789,176 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "689"
+          "Value": "627"
         },
         {
           "Name": "ETag",
-          "Value": "\"eFP79BePQCtLzi9XRAzRZNKr08rfKVQ13Am2duaFsJ8=\""
+          "Value": "\"D5NvnTCVIwi2FFGNhLWPJmNIzpIXo8+zarE6gV6sZb4=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 20:26:31 GMT"
+          "Value": "Thu, 15 May 2025 22:42:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"PGxMY79sTOjs+dUrY0js6D6e6C2ZwQClA0hiGtMqpr8=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "c6yn3pm5xi"
+        },
+        {
+          "Name": "label",
+          "Value": "css/admin.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-PGxMY79sTOjs+dUrY0js6D6e6C2ZwQClA0hiGtMqpr8="
+        }
+      ]
+    },
+    {
+      "Route": "css/admin.c6yn3pm5xi.css",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\wwwroot\\css\\admin.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1722"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"PGxMY79sTOjs+dUrY0js6D6e6C2ZwQClA0hiGtMqpr8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 22:42:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "c6yn3pm5xi"
+        },
+        {
+          "Name": "label",
+          "Value": "css/admin.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-PGxMY79sTOjs+dUrY0js6D6e6C2ZwQClA0hiGtMqpr8="
+        }
+      ]
+    },
+    {
+      "Route": "css/admin.c6yn3pm5xi.css.gz",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\4i70nu1v6l-c6yn3pm5xi.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "627"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"D5NvnTCVIwi2FFGNhLWPJmNIzpIXo8+zarE6gV6sZb4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 22:42:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "c6yn3pm5xi"
+        },
+        {
+          "Name": "label",
+          "Value": "css/admin.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-D5NvnTCVIwi2FFGNhLWPJmNIzpIXo8+zarE6gV6sZb4="
+        }
+      ]
+    },
+    {
+      "Route": "css/admin.css",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\4i70nu1v6l-c6yn3pm5xi.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001592356688"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "627"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"D5NvnTCVIwi2FFGNhLWPJmNIzpIXo8+zarE6gV6sZb4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 22:42:16 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5649,13 +5978,746 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"9M16YVDiODbavwdxvMeSkfgRVLhGiLd+vGoWDMAb2XM=\""
+          "Value": "W/\"PGxMY79sTOjs+dUrY0js6D6e6C2ZwQClA0hiGtMqpr8=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-9M16YVDiODbavwdxvMeSkfgRVLhGiLd+vGoWDMAb2XM="
+          "Value": "sha256-PGxMY79sTOjs+dUrY0js6D6e6C2ZwQClA0hiGtMqpr8="
+        }
+      ]
+    },
+    {
+      "Route": "css/admin.css",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\wwwroot\\css\\admin.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1722"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"PGxMY79sTOjs+dUrY0js6D6e6C2ZwQClA0hiGtMqpr8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 22:42:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-PGxMY79sTOjs+dUrY0js6D6e6C2ZwQClA0hiGtMqpr8="
+        }
+      ]
+    },
+    {
+      "Route": "css/admin.css.gz",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\4i70nu1v6l-c6yn3pm5xi.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "627"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"D5NvnTCVIwi2FFGNhLWPJmNIzpIXo8+zarE6gV6sZb4=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 22:42:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-D5NvnTCVIwi2FFGNhLWPJmNIzpIXo8+zarE6gV6sZb4="
+        }
+      ]
+    },
+    {
+      "Route": "css/footer-fix.css",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\2urbz3hmxe-i6b8oat2xs.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.002439024390"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "409"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mubAVr6dMdI7fLj+96u9rgMquBO12T/maBmOrATIC1c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 23:24:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"mrrZAWYfr/1Ijzmg+bJEDOXZtphSJQoc1qgBezH8dhc=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mrrZAWYfr/1Ijzmg+bJEDOXZtphSJQoc1qgBezH8dhc="
+        }
+      ]
+    },
+    {
+      "Route": "css/footer-fix.css",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\wwwroot\\css\\footer-fix.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "923"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mrrZAWYfr/1Ijzmg+bJEDOXZtphSJQoc1qgBezH8dhc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 23:24:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mrrZAWYfr/1Ijzmg+bJEDOXZtphSJQoc1qgBezH8dhc="
+        }
+      ]
+    },
+    {
+      "Route": "css/footer-fix.css.gz",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\2urbz3hmxe-i6b8oat2xs.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "409"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mubAVr6dMdI7fLj+96u9rgMquBO12T/maBmOrATIC1c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 23:24:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-mubAVr6dMdI7fLj+96u9rgMquBO12T/maBmOrATIC1c="
+        }
+      ]
+    },
+    {
+      "Route": "css/footer-fix.i6b8oat2xs.css",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\2urbz3hmxe-i6b8oat2xs.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.002439024390"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "409"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mubAVr6dMdI7fLj+96u9rgMquBO12T/maBmOrATIC1c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 23:24:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"mrrZAWYfr/1Ijzmg+bJEDOXZtphSJQoc1qgBezH8dhc=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "i6b8oat2xs"
+        },
+        {
+          "Name": "label",
+          "Value": "css/footer-fix.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mrrZAWYfr/1Ijzmg+bJEDOXZtphSJQoc1qgBezH8dhc="
+        }
+      ]
+    },
+    {
+      "Route": "css/footer-fix.i6b8oat2xs.css",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\wwwroot\\css\\footer-fix.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "923"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mrrZAWYfr/1Ijzmg+bJEDOXZtphSJQoc1qgBezH8dhc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 23:24:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "i6b8oat2xs"
+        },
+        {
+          "Name": "label",
+          "Value": "css/footer-fix.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mrrZAWYfr/1Ijzmg+bJEDOXZtphSJQoc1qgBezH8dhc="
+        }
+      ]
+    },
+    {
+      "Route": "css/footer-fix.i6b8oat2xs.css.gz",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\2urbz3hmxe-i6b8oat2xs.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "409"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"mubAVr6dMdI7fLj+96u9rgMquBO12T/maBmOrATIC1c=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 23:24:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "i6b8oat2xs"
+        },
+        {
+          "Name": "label",
+          "Value": "css/footer-fix.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-mubAVr6dMdI7fLj+96u9rgMquBO12T/maBmOrATIC1c="
+        }
+      ]
+    },
+    {
+      "Route": "css/payment-methods.css",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\9ey0j1gj3k-vgbzhe7nnr.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001239157373"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "806"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"OMdaAOREhJNrNwRq6apPc6Qf+nl2m8l0a/VHGyF5WFM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 23:19:12 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"z/1VQcqrW3sEzpyAkt4J28QTsi3QQEe+0Sy5J350rfM=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-z/1VQcqrW3sEzpyAkt4J28QTsi3QQEe+0Sy5J350rfM="
+        }
+      ]
+    },
+    {
+      "Route": "css/payment-methods.css",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\wwwroot\\css\\payment-methods.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1745"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"z/1VQcqrW3sEzpyAkt4J28QTsi3QQEe+0Sy5J350rfM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 23:19:12 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-z/1VQcqrW3sEzpyAkt4J28QTsi3QQEe+0Sy5J350rfM="
+        }
+      ]
+    },
+    {
+      "Route": "css/payment-methods.css.gz",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\9ey0j1gj3k-vgbzhe7nnr.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "806"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"OMdaAOREhJNrNwRq6apPc6Qf+nl2m8l0a/VHGyF5WFM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 23:19:12 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-OMdaAOREhJNrNwRq6apPc6Qf+nl2m8l0a/VHGyF5WFM="
+        }
+      ]
+    },
+    {
+      "Route": "css/payment-methods.vgbzhe7nnr.css",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\9ey0j1gj3k-vgbzhe7nnr.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001239157373"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "806"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"OMdaAOREhJNrNwRq6apPc6Qf+nl2m8l0a/VHGyF5WFM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 23:19:12 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"z/1VQcqrW3sEzpyAkt4J28QTsi3QQEe+0Sy5J350rfM=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vgbzhe7nnr"
+        },
+        {
+          "Name": "label",
+          "Value": "css/payment-methods.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-z/1VQcqrW3sEzpyAkt4J28QTsi3QQEe+0Sy5J350rfM="
+        }
+      ]
+    },
+    {
+      "Route": "css/payment-methods.vgbzhe7nnr.css",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\wwwroot\\css\\payment-methods.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1745"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"z/1VQcqrW3sEzpyAkt4J28QTsi3QQEe+0Sy5J350rfM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 23:19:12 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vgbzhe7nnr"
+        },
+        {
+          "Name": "label",
+          "Value": "css/payment-methods.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-z/1VQcqrW3sEzpyAkt4J28QTsi3QQEe+0Sy5J350rfM="
+        }
+      ]
+    },
+    {
+      "Route": "css/payment-methods.vgbzhe7nnr.css.gz",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\9ey0j1gj3k-vgbzhe7nnr.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "806"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"OMdaAOREhJNrNwRq6apPc6Qf+nl2m8l0a/VHGyF5WFM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 23:19:12 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vgbzhe7nnr"
+        },
+        {
+          "Name": "label",
+          "Value": "css/payment-methods.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-OMdaAOREhJNrNwRq6apPc6Qf+nl2m8l0a/VHGyF5WFM="
+        }
+      ]
+    },
+    {
+      "Route": "css/site.css",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\1h8i5tfkra-own2khg6tn.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001219512195"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "819"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"dpEMLsU5HH3ZqgiZ9A80DH/PAAe5oMV9IE8exCMxfAo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 23:24:53 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"eCK5R5+/nUWV2pxJN44Oj8fLqbk6JSZUA1PH8xs35jc=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-eCK5R5+/nUWV2pxJN44Oj8fLqbk6JSZUA1PH8xs35jc="
         }
       ]
     },
@@ -5670,7 +6732,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1840"
+          "Value": "2129"
         },
         {
           "Name": "Content-Type",
@@ -5678,11 +6740,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"9M16YVDiODbavwdxvMeSkfgRVLhGiLd+vGoWDMAb2XM=\""
+          "Value": "\"eCK5R5+/nUWV2pxJN44Oj8fLqbk6JSZUA1PH8xs35jc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 20:26:31 GMT"
+          "Value": "Thu, 15 May 2025 23:24:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5692,13 +6754,13 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-9M16YVDiODbavwdxvMeSkfgRVLhGiLd+vGoWDMAb2XM="
+          "Value": "sha256-eCK5R5+/nUWV2pxJN44Oj8fLqbk6JSZUA1PH8xs35jc="
         }
       ]
     },
     {
       "Route": "css/site.css.gz",
-      "AssetFile": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\1h8i5tfkra-sgfnk0v406.gz",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\1h8i5tfkra-own2khg6tn.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5707,7 +6769,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "689"
+          "Value": "819"
         },
         {
           "Name": "Content-Type",
@@ -5715,11 +6777,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"eFP79BePQCtLzi9XRAzRZNKr08rfKVQ13Am2duaFsJ8=\""
+          "Value": "\"dpEMLsU5HH3ZqgiZ9A80DH/PAAe5oMV9IE8exCMxfAo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 20:26:31 GMT"
+          "Value": "Thu, 15 May 2025 23:24:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5737,18 +6799,18 @@
       "EndpointProperties": [
         {
           "Name": "integrity",
-          "Value": "sha256-eFP79BePQCtLzi9XRAzRZNKr08rfKVQ13Am2duaFsJ8="
+          "Value": "sha256-dpEMLsU5HH3ZqgiZ9A80DH/PAAe5oMV9IE8exCMxfAo="
         }
       ]
     },
     {
-      "Route": "css/site.sgfnk0v406.css",
-      "AssetFile": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\1h8i5tfkra-sgfnk0v406.gz",
+      "Route": "css/site.own2khg6tn.css",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\1h8i5tfkra-own2khg6tn.gz",
       "Selectors": [
         {
           "Name": "Content-Encoding",
           "Value": "gzip",
-          "Quality": "0.001449275362"
+          "Quality": "0.001219512195"
         }
       ],
       "ResponseHeaders": [
@@ -5758,15 +6820,15 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "689"
+          "Value": "819"
         },
         {
           "Name": "ETag",
-          "Value": "\"eFP79BePQCtLzi9XRAzRZNKr08rfKVQ13Am2duaFsJ8=\""
+          "Value": "\"dpEMLsU5HH3ZqgiZ9A80DH/PAAe5oMV9IE8exCMxfAo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 20:26:31 GMT"
+          "Value": "Thu, 15 May 2025 23:24:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5786,13 +6848,13 @@
         },
         {
           "Name": "ETag",
-          "Value": "W/\"9M16YVDiODbavwdxvMeSkfgRVLhGiLd+vGoWDMAb2XM=\""
+          "Value": "W/\"eCK5R5+/nUWV2pxJN44Oj8fLqbk6JSZUA1PH8xs35jc=\""
         }
       ],
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "sgfnk0v406"
+          "Value": "own2khg6tn"
         },
         {
           "Name": "label",
@@ -5800,12 +6862,12 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-9M16YVDiODbavwdxvMeSkfgRVLhGiLd+vGoWDMAb2XM="
+          "Value": "sha256-eCK5R5+/nUWV2pxJN44Oj8fLqbk6JSZUA1PH8xs35jc="
         }
       ]
     },
     {
-      "Route": "css/site.sgfnk0v406.css",
+      "Route": "css/site.own2khg6tn.css",
       "AssetFile": "D:\\VSappTest\\EcommerceApp\\wwwroot\\css\\site.css",
       "Selectors": [],
       "ResponseHeaders": [
@@ -5815,7 +6877,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "1840"
+          "Value": "2129"
         },
         {
           "Name": "Content-Type",
@@ -5823,11 +6885,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"9M16YVDiODbavwdxvMeSkfgRVLhGiLd+vGoWDMAb2XM=\""
+          "Value": "\"eCK5R5+/nUWV2pxJN44Oj8fLqbk6JSZUA1PH8xs35jc=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 20:26:31 GMT"
+          "Value": "Thu, 15 May 2025 23:24:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5837,7 +6899,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "sgfnk0v406"
+          "Value": "own2khg6tn"
         },
         {
           "Name": "label",
@@ -5845,13 +6907,13 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-9M16YVDiODbavwdxvMeSkfgRVLhGiLd+vGoWDMAb2XM="
+          "Value": "sha256-eCK5R5+/nUWV2pxJN44Oj8fLqbk6JSZUA1PH8xs35jc="
         }
       ]
     },
     {
-      "Route": "css/site.sgfnk0v406.css.gz",
-      "AssetFile": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\1h8i5tfkra-sgfnk0v406.gz",
+      "Route": "css/site.own2khg6tn.css.gz",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\1h8i5tfkra-own2khg6tn.gz",
       "Selectors": [],
       "ResponseHeaders": [
         {
@@ -5860,7 +6922,7 @@
         },
         {
           "Name": "Content-Length",
-          "Value": "689"
+          "Value": "819"
         },
         {
           "Name": "Content-Type",
@@ -5868,11 +6930,11 @@
         },
         {
           "Name": "ETag",
-          "Value": "\"eFP79BePQCtLzi9XRAzRZNKr08rfKVQ13Am2duaFsJ8=\""
+          "Value": "\"dpEMLsU5HH3ZqgiZ9A80DH/PAAe5oMV9IE8exCMxfAo=\""
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 20:26:31 GMT"
+          "Value": "Thu, 15 May 2025 23:24:53 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5890,7 +6952,7 @@
       "EndpointProperties": [
         {
           "Name": "fingerprint",
-          "Value": "sgfnk0v406"
+          "Value": "own2khg6tn"
         },
         {
           "Name": "label",
@@ -5898,7 +6960,7 @@
         },
         {
           "Name": "integrity",
-          "Value": "sha256-eFP79BePQCtLzi9XRAzRZNKr08rfKVQ13Am2duaFsJ8="
+          "Value": "sha256-dpEMLsU5HH3ZqgiZ9A80DH/PAAe5oMV9IE8exCMxfAo="
         }
       ]
     },
@@ -5927,7 +6989,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 21:45:18 GMT"
+          "Value": "Thu, 15 May 2025 22:14:14 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -5988,7 +7050,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 21:45:18 GMT"
+          "Value": "Thu, 15 May 2025 22:14:14 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6033,7 +7095,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 21:45:18 GMT"
+          "Value": "Thu, 15 May 2025 22:14:14 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6088,7 +7150,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 21:45:18 GMT"
+          "Value": "Thu, 15 May 2025 22:14:14 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6149,7 +7211,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 21:45:18 GMT"
+          "Value": "Thu, 15 May 2025 22:14:14 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6194,7 +7256,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 21:45:18 GMT"
+          "Value": "Thu, 15 May 2025 22:14:14 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6249,7 +7311,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 21:45:18 GMT"
+          "Value": "Thu, 15 May 2025 22:14:14 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6302,7 +7364,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 21:45:18 GMT"
+          "Value": "Thu, 15 May 2025 22:14:14 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6339,7 +7401,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 21:45:18 GMT"
+          "Value": "Thu, 15 May 2025 22:14:14 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6386,7 +7448,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 21:45:18 GMT"
+          "Value": "Thu, 15 May 2025 22:14:14 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6439,7 +7501,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 21:45:18 GMT"
+          "Value": "Thu, 15 May 2025 22:14:14 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -6476,7 +7538,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 21:45:18 GMT"
+          "Value": "Thu, 15 May 2025 22:14:14 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -16066,6 +17128,304 @@
       ]
     },
     {
+      "Route": "js/admin.66rowf26fh.js",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\z35o7gykkj-66rowf26fh.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000558659218"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1789"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"CyMYfTqt3JRJZ1CATsEBDtCnUEnfLgjj9+alqH9kBhg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 22:42:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"cgRk+4pRBrvg4goEZ0JupeMmfi76TVikk5xehO22atA=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "66rowf26fh"
+        },
+        {
+          "Name": "label",
+          "Value": "js/admin.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-cgRk+4pRBrvg4goEZ0JupeMmfi76TVikk5xehO22atA="
+        }
+      ]
+    },
+    {
+      "Route": "js/admin.66rowf26fh.js",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\wwwroot\\js\\admin.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5926"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cgRk+4pRBrvg4goEZ0JupeMmfi76TVikk5xehO22atA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 22:42:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "66rowf26fh"
+        },
+        {
+          "Name": "label",
+          "Value": "js/admin.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-cgRk+4pRBrvg4goEZ0JupeMmfi76TVikk5xehO22atA="
+        }
+      ]
+    },
+    {
+      "Route": "js/admin.66rowf26fh.js.gz",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\z35o7gykkj-66rowf26fh.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1789"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"CyMYfTqt3JRJZ1CATsEBDtCnUEnfLgjj9+alqH9kBhg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 22:42:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "66rowf26fh"
+        },
+        {
+          "Name": "label",
+          "Value": "js/admin.js.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-CyMYfTqt3JRJZ1CATsEBDtCnUEnfLgjj9+alqH9kBhg="
+        }
+      ]
+    },
+    {
+      "Route": "js/admin.js",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\z35o7gykkj-66rowf26fh.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000558659218"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1789"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"CyMYfTqt3JRJZ1CATsEBDtCnUEnfLgjj9+alqH9kBhg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 22:42:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"cgRk+4pRBrvg4goEZ0JupeMmfi76TVikk5xehO22atA=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-cgRk+4pRBrvg4goEZ0JupeMmfi76TVikk5xehO22atA="
+        }
+      ]
+    },
+    {
+      "Route": "js/admin.js",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\wwwroot\\js\\admin.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5926"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"cgRk+4pRBrvg4goEZ0JupeMmfi76TVikk5xehO22atA=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 22:42:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-cgRk+4pRBrvg4goEZ0JupeMmfi76TVikk5xehO22atA="
+        }
+      ]
+    },
+    {
+      "Route": "js/admin.js.gz",
+      "AssetFile": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\z35o7gykkj-66rowf26fh.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1789"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"CyMYfTqt3JRJZ1CATsEBDtCnUEnfLgjj9+alqH9kBhg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Thu, 15 May 2025 22:42:16 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-CyMYfTqt3JRJZ1CATsEBDtCnUEnfLgjj9+alqH9kBhg="
+        }
+      ]
+    },
+    {
       "Route": "js/site.1e40rkpulh.js",
       "AssetFile": "D:\\VSappTest\\EcommerceApp\\obj\\Debug\\net9.0\\compressed\\6yg7n7cstq-1e40rkpulh.gz",
       "Selectors": [
@@ -16090,7 +17450,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 20:28:40 GMT"
+          "Value": "Thu, 15 May 2025 17:27:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -16151,7 +17511,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 20:28:40 GMT"
+          "Value": "Thu, 15 May 2025 17:27:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -16196,7 +17556,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 20:28:40 GMT"
+          "Value": "Thu, 15 May 2025 17:27:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -16251,7 +17611,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 20:28:40 GMT"
+          "Value": "Thu, 15 May 2025 17:27:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -16304,7 +17664,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 20:28:40 GMT"
+          "Value": "Thu, 15 May 2025 17:27:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -16341,7 +17701,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 20:28:40 GMT"
+          "Value": "Thu, 15 May 2025 17:27:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34052,7 +35412,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 20:23:33 GMT"
+          "Value": "Thu, 15 May 2025 17:27:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34113,7 +35473,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 20:23:33 GMT"
+          "Value": "Thu, 15 May 2025 17:27:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34158,7 +35518,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 20:23:33 GMT"
+          "Value": "Thu, 15 May 2025 17:27:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34213,7 +35573,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 20:23:33 GMT"
+          "Value": "Thu, 15 May 2025 17:27:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34266,7 +35626,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 20:23:33 GMT"
+          "Value": "Thu, 15 May 2025 17:27:48 GMT"
         },
         {
           "Name": "Cache-Control",
@@ -34303,7 +35663,7 @@
         },
         {
           "Name": "Last-Modified",
-          "Value": "Wed, 14 May 2025 20:23:33 GMT"
+          "Value": "Thu, 15 May 2025 17:27:48 GMT"
         },
         {
           "Name": "Cache-Control",

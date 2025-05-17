@@ -1,9 +1,0 @@
-D:\VSappTest\EcommerceApp\wwwroot\images\products\basketball.jpg
-D:\VSappTest\EcommerceApp\wwwroot\images\products\coffeetable.jpg
-D:\VSappTest\EcommerceApp\wwwroot\images\products\headphones.jpg
-D:\VSappTest\EcommerceApp\wwwroot\images\products\jeans.jpg
-D:\VSappTest\EcommerceApp\wwwroot\images\products\laptop.jpg
-D:\VSappTest\EcommerceApp\wwwroot\images\products\placeholder.jpg
-D:\VSappTest\EcommerceApp\wwwroot\images\products\programmingbook.jpg
-D:\VSappTest\EcommerceApp\wwwroot\images\products\smartphone.jpg
-D:\VSappTest\EcommerceApp\wwwroot\images\products\tshirt.jpg

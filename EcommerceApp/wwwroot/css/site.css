@@ -18,10 +18,21 @@ html {
 }
 
 body {
-  margin-bottom: 60px;
+  margin-bottom: 0; /* Removed extra margin below footer */
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+/* Hide any text outside regular page structure */
+html:after, body:after, footer:after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Ensure footer sticks to the bottom with no extra space */
+footer {
+  margin-bottom: 0;
+}
+
+.form-floating> .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
   color: var(--bs-secondary-color);
   text-align: end;
 }

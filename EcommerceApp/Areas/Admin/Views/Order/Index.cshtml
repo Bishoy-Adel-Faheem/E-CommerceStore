@@ -1,0 +1,131 @@
+@model IEnumerable<EcommerceApp.Models.Order>
+@using EcommerceApp.Models
+
+@{
+    ViewData["Title"] = "Orders Management";
+}
+
+<div class="container mt-4">    <div class="d-flex justify-content-between align-items-center">
+        <h1>Orders Management</h1>
+        <div>
+            <div class="dropdown">
+                <button class="btn btn-outline-primary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    @if (ViewData["CurrentFilter"] != null)
+                    {
+                        <text>Filter: @ViewData["CurrentFilter"]</text>
+                    }
+                    else
+                    {
+                        <text>Filter by Status</text>
+                    }
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="filterDropdown">
+                    <li><a class="dropdown-item" asp-action="Index">All Orders</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    @foreach (var status in Enum.GetValues(typeof(OrderStatus)))
+                    {
+                        <li><a class="dropdown-item" asp-action="Index" asp-route-status="@status">@status</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <hr />
+
+    @if (TempData["StatusMessage"] != null)
+    {
+        <div class="alert alert-success mb-3" role="alert">
+            @TempData["StatusMessage"]
+        </div>
+    }
+    
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger mb-3" role="alert">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
+    <div class="card">
+        <div class="card-body p-0">
+            @if (Model.Any())
+            {
+                <div class="table-responsive">
+                    <table class="table table-striped mb-0">
+                        <thead>
+                            <tr>
+                                <th>Order #</th>
+                                <th>Date</th>
+                                <th>Customer</th>
+                                <th>Ship To</th>
+                                <th>Total</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var order in Model)
+                            {
+                                <tr>
+                                    <td>@order.Id</td>
+                                    <td>@order.OrderDate.ToString("MMM dd, yyyy HH:mm")</td>
+                                    <td>
+                                        @if (order.User != null)
+                                        {
+                                            <span>@order.User.FirstName @order.User.LastName</span>
+                                            <br />
+                                            <small class="text-muted">@order.User.Email</small>
+                                        }
+                                        else
+                                        {
+                                            <span>Unknown User</span>
+                                        }
+                                    </td>
+                                    <td>
+                                        @order.City, @order.Country
+                                    </td>
+                                    <td>$@order.TotalAmount.ToString("0.00")</td>
+                                    <td>
+                                        <span class="badge @GetStatusClass(order.Status)">@order.Status</span>
+                                    </td>
+                                    <td>
+                                        <a asp-action="Details" asp-route-id="@order.Id" class="btn btn-sm btn-primary">
+                                            <i class="bi bi-eye"></i> Details
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+            else
+            {
+                <div class="p-4 text-center">
+                    <div class="text-muted mb-3">
+                        <i class="bi bi-inbox fs-1"></i>
+                    </div>
+                    <h5>No orders found</h5>
+                    <p>There are no orders in the system yet.</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@functions {    string GetStatusClass(OrderStatus status)
+    {
+        return status switch
+        {
+            OrderStatus.Pending => "bg-warning text-dark",
+            OrderStatus.Processing => "bg-info text-dark",
+            OrderStatus.Shipped => "bg-primary",
+            OrderStatus.OutForDelivery => "bg-info",
+            OrderStatus.Delivered => "bg-success",
+            OrderStatus.Cancelled => "bg-danger",
+            OrderStatus.ReturnRequested => "bg-warning text-dark",
+            OrderStatus.Returned => "bg-secondary",
+            _ => "bg-secondary"
+        };
+    }
+}

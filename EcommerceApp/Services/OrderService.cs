@@ -70,17 +70,22 @@ namespace EcommerceApp.Services
             await _cartService.ClearCartAsync(userId);
 
             return order;
-        }
-
-        public async Task<IEnumerable<Order>> GetOrdersByUserIdAsync(string userId)
+        }        public async Task<IEnumerable<Order>> GetOrdersByUserIdAsync(string? userId = null)
         {
-            return await _context.Orders
-                .Where(o => o.UserId == userId)
+            var query = _context.Orders.AsQueryable();
+            
+            if (userId != null)
+            {
+                query = query.Where(o => o.UserId == userId);
+            }
+            
+            return await query
+                .Include(o => o.User)
                 .Include(o => o.OrderItems)
                     .ThenInclude(oi => oi.Product)
                 .OrderByDescending(o => o.OrderDate)
                 .ToListAsync();
-        }        public async Task<Order?> GetOrderByIdAsync(int orderId, string? userId = null)
+        }public async Task<Order?> GetOrderByIdAsync(int orderId, string? userId = null)
         {
             if (userId != null)
             {
@@ -99,18 +104,92 @@ namespace EcommerceApp.Services
                         .ThenInclude(oi => oi.Product)
                     .FirstOrDefaultAsync(o => o.Id == orderId);
             }
-        }
-
-        public async Task<bool> UpdateOrderStatusAsync(int orderId, OrderStatus status)
+        }        public async Task<bool> UpdateOrderStatusAsync(int orderId, OrderStatus status, string? adminUsername = null)
         {
             var order = await _context.Orders.FindAsync(orderId);
             if (order == null)
                 return false;
 
+            // Save the previous status for note
+            var previousStatus = order.Status;
+            
+            // Update status and related date fields
             order.Status = status;
+            
+            // Update date fields based on status
+            switch (status)
+            {
+                case OrderStatus.Processing:
+                    order.ProcessedDate = DateTime.Now;
+                    break;
+                case OrderStatus.Shipped:
+                    order.ShippedDate = DateTime.Now;
+                    break;
+                case OrderStatus.Delivered:
+                    order.DeliveredDate = DateTime.Now;
+                    break;
+            }
+            
+            _context.Entry(order).State = EntityState.Modified;
+            
+            // Add a note about the status change
+            if (adminUsername != null)
+            {
+                var note = new OrderNote
+                {
+                    OrderId = orderId,
+                    Note = $"Order status changed from {previousStatus} to {status}",
+                    CreatedBy = adminUsername,
+                    IsInternal = true
+                };
+                _context.OrderNotes.Add(note);
+            }
+            
+            await _context.SaveChangesAsync();
+            return true;
+        }
+        
+        public async Task<bool> UpdateTrackingInfoAsync(int orderId, string trackingNumber, string shippingProvider)
+        {
+            var order = await _context.Orders.FindAsync(orderId);
+            if (order == null)
+                return false;
+                
+            order.TrackingNumber = trackingNumber;
+            order.ShippingProvider = shippingProvider;
+            
             _context.Entry(order).State = EntityState.Modified;
             await _context.SaveChangesAsync();
             return true;
+        }
+        
+        public async Task<OrderNote> AddOrderNoteAsync(int orderId, string note, string createdBy, bool isInternal = true)
+        {
+            var order = await _context.Orders.FindAsync(orderId);
+            if (order == null)
+                throw new ArgumentException("Order not found", nameof(orderId));
+                
+            var orderNote = new OrderNote
+            {
+                OrderId = orderId,
+                Note = note,
+                CreatedBy = createdBy,
+                IsInternal = isInternal
+            };
+            
+            _context.OrderNotes.Add(orderNote);
+            await _context.SaveChangesAsync();
+            return orderNote;
+        }
+        
+        public async Task<IEnumerable<OrderNote>> GetOrderNotesAsync(int orderId, bool includeInternal = true)
+        {
+            var query = _context.OrderNotes.Where(n => n.OrderId == orderId);
+            
+            if (!includeInternal)
+                query = query.Where(n => !n.IsInternal);
+                
+            return await query.OrderByDescending(n => n.CreatedAt).ToListAsync();
         }
     }
 }

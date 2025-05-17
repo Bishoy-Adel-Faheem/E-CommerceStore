@@ -55,6 +55,34 @@ namespace EcommerceApp.Services
                 }
             }
 
+            // Create a custom admin user (you can modify these details)
+            var customAdminEmail = "youremail@example.com";
+            var customAdminUser = await userManager.FindByEmailAsync(customAdminEmail);
+
+            if (customAdminUser == null)
+            {
+                customAdminUser = new ApplicationUser
+                {
+                    UserName = customAdminEmail,
+                    Email = customAdminEmail,
+                    FirstName = "Your",
+                    LastName = "Name",
+                    Address = "Your Address",
+                    City = "Your City",
+                    PostalCode = "Your Postal Code",
+                    Country = "Your Country",
+                    EmailConfirmed = true
+                };
+
+                var customPassword = "YourPassword@123"; // Choose a strong password
+                var customResult = await userManager.CreateAsync(customAdminUser, customPassword);
+
+                if (customResult.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(customAdminUser, "Admin");
+                }
+            }
+
             // Seed categories if none exist
             if (!await context.Categories.AnyAsync())
             {

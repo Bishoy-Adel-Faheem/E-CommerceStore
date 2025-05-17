@@ -10,8 +10,11 @@ namespace EcommerceApp.Models
         Pending,
         Processing,
         Shipped,
+        OutForDelivery,
         Delivered,
-        Cancelled
+        Cancelled,
+        ReturnRequested,
+        Returned
     }
       public class Order
     {
@@ -49,6 +52,16 @@ namespace EcommerceApp.Models
         public decimal TotalAmount { get; set; }
         
         public OrderStatus Status { get; set; } = OrderStatus.Pending;
+          // Tracking information
+        public DateTime? ProcessedDate { get; set; }
+        
+        public DateTime? ShippedDate { get; set; }
+        
+        public DateTime? DeliveredDate { get; set; }
+        
+        public string? TrackingNumber { get; set; }
+        
+        public string? ShippingProvider { get; set; }
         
         // Navigation property for user
         [ForeignKey("UserId")]
@@ -56,5 +69,8 @@ namespace EcommerceApp.Models
         
         // Navigation property for order items
         public virtual ICollection<OrderItem> OrderItems { get; set; } = new List<OrderItem>();
+        
+        // Navigation property for order notes
+        public virtual ICollection<OrderNote> Notes { get; set; } = new List<OrderNote>();
     }
 }
