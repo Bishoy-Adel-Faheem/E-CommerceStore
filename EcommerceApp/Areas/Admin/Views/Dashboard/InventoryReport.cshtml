@@ -1,0 +1,238 @@
+@model EcommerceApp.ViewModels.InventoryReportViewModel
+@{
+    ViewData["Title"] = "Inventory Report";
+    var categoryColors = new string[] { 
+        "primary", "success", "danger", "warning", "info", "secondary", 
+        "dark", "primary", "success", "danger" 
+    };
+}
+
+<div class="card border-0 rounded-3 shadow-sm mb-4">
+    <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+        <h5 class="card-title">Inventory Report</h5>
+        <div class="btn-group btn-group-sm">
+            <button type="button" class="btn btn-outline-primary" onclick="window.print()">
+                <i class="bi bi-printer me-1"></i> Print Report
+            </button>
+            <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Export
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#" id="exportExcel"><i class="bi bi-file-earmark-excel me-2"></i>Excel</a></li>
+                <li><a class="dropdown-item" href="#" id="exportPdf"><i class="bi bi-file-earmark-pdf me-2"></i>PDF</a></li>
+                <li><a class="dropdown-item" href="#" id="exportCsv"><i class="bi bi-file-earmark-text me-2"></i>CSV</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="card-body">
+        <div class="d-flex justify-content-between mb-4">
+            <h6 class="text-muted">Generated on: @Model.GeneratedAt.ToString("MMMM dd, yyyy h:mm tt")</h6>
+            <span class="badge bg-primary p-2">Total Products: @Model.TotalProducts</span>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card border-0 bg-light h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Stock Health Overview</h5>
+                        <div class="mt-4">
+                            <canvas id="stockHealthChart" height="200"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8">
+                <div class="card border-0 bg-light h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">Stock by Category</h5>
+                        <div class="table-responsive">
+                            <table class="table table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>Category</th>
+                                        <th>Total</th>
+                                        <th>Out of Stock</th>
+                                        <th>Low Stock</th>
+                                        <th>Stock Health</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var category in Model.StockByCategory)
+                                    {
+                                        var healthyStock = category.TotalProducts - category.OutOfStockProducts - category.LowStockProducts;
+                                        var healthPercent = category.TotalProducts > 0 
+                                            ? (double)healthyStock / category.TotalProducts * 100 
+                                            : 0;
+                                            
+                                        <tr>
+                                            <td>@category.CategoryName</td>
+                                            <td>@category.TotalProducts</td>
+                                            <td>
+                                                @if (category.OutOfStockProducts > 0)
+                                                {
+                                                    <span class="text-danger">@category.OutOfStockProducts</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>0</span>
+                                                }
+                                            </td>
+                                            <td>
+                                                @if (category.LowStockProducts > 0)
+                                                {
+                                                    <span class="text-warning">@category.LowStockProducts</span>
+                                                }
+                                                else
+                                                {
+                                                    <span>0</span>
+                                                }
+                                            </td>
+                                            <td>
+                                                <div class="progress" style="height: 10px;">
+                                                    <div class="progress-bar bg-danger" role="progressbar" 
+                                                         style="width: @(category.OutOfStockProducts * 100.0 / category.TotalProducts)%"></div>
+                                                    <div class="progress-bar bg-warning" role="progressbar" 
+                                                         style="width: @(category.LowStockProducts * 100.0 / category.TotalProducts)%"></div>
+                                                    <div class="progress-bar bg-success" role="progressbar" 
+                                                         style="width: @(healthyStock * 100.0 / category.TotalProducts)%"></div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 bg-light mb-4">
+            <div class="card-body">
+                <h5 class="card-title">Recent Inventory Changes</h5>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Date & Time</th>
+                                <th>Product</th>
+                                <th>User</th>
+                                <th>Previous Stock</th>
+                                <th>New Stock</th>
+                                <th>Change</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var change in Model.RecentChanges)
+                            {
+                                var stockDiff = change.NewStock - change.PreviousStock;
+                                var diffClass = stockDiff > 0 ? "text-success" : (stockDiff < 0 ? "text-danger" : "");
+                                var diffIcon = stockDiff > 0 ? "bi-arrow-up" : (stockDiff < 0 ? "bi-arrow-down" : "bi-dash");
+                                
+                                <tr>
+                                    <td>@change.ChangedAt.ToString("MMM dd, yyyy h:mm tt")</td>
+                                    <td>
+                                        <a asp-area="Admin" asp-controller="Product" asp-action="Edit" asp-route-id="@change.ProductId">
+                                            @change.ProductName
+                                        </a>
+                                    </td>
+                                    <td>@change.ChangedBy</td>
+                                    <td>@change.PreviousStock</td>
+                                    <td>@change.NewStock</td>
+                                    <td class="@diffClass">
+                                        <i class="bi @diffIcon"></i> @(stockDiff > 0 ? "+" + stockDiff : stockDiff)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="card border-0 bg-light">
+            <div class="card-body">
+                <h5 class="card-title">Inventory Action Items</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="alert alert-danger">
+                            <h6><i class="bi bi-exclamation-triangle-fill me-2"></i> Out of Stock Items</h6>
+                            <p>@Model.OutOfStockProducts items need to be restocked immediately.</p>
+                            <a asp-area="Admin" asp-controller="Dashboard" asp-action="Inventory" 
+                               class="btn btn-outline-danger btn-sm" asp-route-filter="out-of-stock">
+                                View Out of Stock Products
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="alert alert-warning">
+                            <h6><i class="bi bi-exclamation-circle-fill me-2"></i> Low Stock Items</h6>
+                            <p>@Model.LowStockProducts items are running low and need attention.</p>
+                            <a asp-area="Admin" asp-controller="Dashboard" asp-action="Inventory" 
+                               class="btn btn-outline-warning btn-sm" asp-route-filter="low-stock">
+                                View Low Stock Products
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Chart.js defaults
+            Chart.defaults.font.family = "'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif";
+            Chart.defaults.color = '#6c757d';
+            
+            // Stock Health Chart
+            const stockHealthCtx = document.getElementById('stockHealthChart').getContext('2d');
+            new Chart(stockHealthCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Healthy Stock', 'Low Stock', 'Out of Stock'],
+                    datasets: [{
+                        data: [
+                            @Model.HealthyStockProducts,
+                            @Model.LowStockProducts,
+                            @Model.OutOfStockProducts
+                        ],
+                        backgroundColor: [
+                            'rgba(25, 135, 84, 0.8)',
+                            'rgba(255, 193, 7, 0.8)',
+                            'rgba(220, 53, 69, 0.8)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+            
+            // Export functionality - These would typically be connected to backend export functions
+            document.getElementById('exportExcel').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Export to Excel functionality would be implemented here.');
+            });
+            
+            document.getElementById('exportPdf').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Export to PDF functionality would be implemented here.');
+            });
+            
+            document.getElementById('exportCsv').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Export to CSV functionality would be implemented here.');
+            });
+        });
+    </script>
+}

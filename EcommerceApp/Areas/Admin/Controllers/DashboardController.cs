@@ -176,9 +176,7 @@ namespace EcommerceApp.Areas.Admin.Controllers
                 .ToListAsync();
                 
             return View(orders);
-        }
-
-        // Action for inventory status
+        }        // Action for inventory status
         public async Task<IActionResult> Inventory()
         {
             var products = await _context.Products
@@ -186,7 +184,75 @@ namespace EcommerceApp.Areas.Admin.Controllers
                 .OrderBy(p => p.Stock)
                 .ToListAsync();
             
+            // Serialize products with special handling for circular references
+            ViewData["ProductsJson"] = System.Text.Json.JsonSerializer.Serialize(
+                products.Select(p => new {
+                    id = p.Id,
+                    name = p.Name,
+                    stock = p.Stock,
+                    price = p.Price,
+                    categoryId = p.CategoryId,
+                    categoryName = p.Category?.Name
+                }),
+                new System.Text.Json.JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase
+                }
+            );
+            
             return View(products);
+        }
+          // Action for inventory report
+        public async Task<IActionResult> InventoryReport()
+        {
+            var products = await _context.Products
+                .Include(p => p.Category)
+                .ToListAsync();
+                
+            var stockHistory = await _context.StockHistory
+                .Include(sh => sh.Product)
+                .OrderByDescending(sh => sh.ChangedAt)
+                .Take(10)
+                .ToListAsync();
+                
+            var report = new InventoryReportViewModel
+            {
+                TotalProducts = products.Count,
+                OutOfStockProducts = products.Count(p => p.Stock <= 0),
+                LowStockProducts = products.Count(p => p.Stock > 0 && p.Stock <= 5),
+                HealthyStockProducts = products.Count(p => p.Stock > 5),
+                GeneratedAt = DateTime.Now,
+                StockByCategory = products
+                    .GroupBy(p => p.Category?.Name ?? "Uncategorized")
+                    .Select(g => new CategoryStockSummary
+                    {
+                        CategoryName = g.Key,
+                        TotalProducts = g.Count(),
+                        OutOfStockProducts = g.Count(p => p.Stock <= 0),
+                        LowStockProducts = g.Count(p => p.Stock > 0 && p.Stock <= 5)
+                    })
+                    .ToList(),
+                RecentChanges = stockHistory.Select(sh => new RecentStockChange
+                {
+                    ProductId = sh.ProductId,
+                    ProductName = sh.Product?.Name ?? $"Product {sh.ProductId}",
+                    PreviousStock = sh.PreviousStock,
+                    NewStock = sh.NewStock,
+                    ChangedAt = sh.ChangedAt,
+                    ChangedBy = sh.ChangedBy
+                }).ToList()
+            };
+            
+            // Serialize stock chart data to avoid circular references
+            ViewData["StockByCategoryJson"] = System.Text.Json.JsonSerializer.Serialize(
+                report.StockByCategory,
+                new System.Text.Json.JsonSerializerOptions
+                {
+                    PropertyNamingPolicy = System.Text.Json.JsonNamingPolicy.CamelCase
+                }
+            );
+            
+            return View(report);
         }
     }
 }

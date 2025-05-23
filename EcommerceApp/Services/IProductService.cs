@@ -14,5 +14,11 @@ namespace EcommerceApp.Services
         Task<Product> CreateProductAsync(Product product);
         Task<Product> UpdateProductAsync(Product product);
         Task<bool> DeleteProductAsync(int id);
+        
+        // Inventory management methods
+        Task<Product> UpdateProductStockAsync(int productId, int newStock, string username, string reason = "", string transactionType = "Manual");
+        Task<IEnumerable<StockHistory>> GetStockHistoryByProductIdAsync(int productId);
+        Task<IEnumerable<Product>> GetLowStockProductsAsync(int threshold = 5);
+        Task<bool> BulkUpdateStockAsync(Dictionary<int, int> productStockUpdates, string username, string reason = "");
     }
 }

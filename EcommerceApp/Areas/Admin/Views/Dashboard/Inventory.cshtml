@@ -3,6 +3,8 @@
     ViewData["Title"] = "Inventory Management";
 }
 
+@Html.AntiForgeryToken()
+
 <div class="card border-0 rounded-3 shadow-sm mb-4">
     <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
         <h5 class="card-title">Inventory Overview</h5>
@@ -82,21 +84,26 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        <div class="row mb-4">
+        </div>        <div class="row mb-4">
             <div class="col-12">
                 <h5 class="mb-3">Inventory Status</h5>
-                <canvas id="inventoryStatusChart" height="100"></canvas>
+                <div style="height: 200px;">
+                    <canvas id="inventoryStatusChart"></canvas>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="card border-0 rounded-3 shadow-sm">
-    <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
+<div class="card border-0 rounded-3 shadow-sm">    <div class="card-header bg-white border-0 pt-4 pb-0 d-flex justify-content-between align-items-center">
         <h5 class="card-title">Inventory List</h5>
         <div class="d-flex gap-2">
+            <a asp-action="InventoryReport" class="btn btn-outline-primary">
+                <i class="bi bi-bar-chart-fill me-1"></i> Inventory Report
+            </a>
+            <button type="button" class="btn btn-outline-success" id="bulkUpdateBtn" data-bs-toggle="modal" data-bs-target="#bulkUpdateModal">
+                <i class="bi bi-pencil-square me-1"></i> Bulk Update
+            </button>
             <div class="dropdown">
                 <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                     <i class="bi bi-filter me-1"></i> Filter
@@ -176,10 +183,12 @@
                         </tr>
                     }
                 </tbody>
-            </table>
-        </div>
+            </table>        </div>
     </div>
 </div>
+
+<!-- Toast Container -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3"></div>
 
 <!-- Stock History Modal -->
 <div class="modal fade" id="stockHistoryModal" tabindex="-1" aria-labelledby="stockHistoryModalLabel" aria-hidden="true">
@@ -188,10 +197,18 @@
             <div class="modal-header">
                 <h5 class="modal-title" id="stockHistoryModalLabel">Stock History</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p class="text-muted">This feature will track stock changes for the selected product.</p>
-                <div class="table-responsive">
+            </div>            <div class="modal-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h6 class="product-name mb-0"></h6>
+                    <span class="badge bg-primary">ID: <span class="product-id"></span></span>
+                </div>
+                <div class="text-center mb-3 loading-indicator">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">Loading stock history...</p>
+                </div>
+                <div class="table-responsive stock-history-data" style="display: none;">
                     <table class="table table-sm table-striped">
                         <thead>
                             <tr>
@@ -201,18 +218,91 @@
                                 <th>Change</th>
                                 <th>User</th>
                                 <th>Reason</th>
+                                <th>Type</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="stockHistoryTableBody">
+                            <!-- Stock history will be loaded here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="alert alert-info no-history" style="display: none;">
+                    <i class="bi bi-info-circle me-2"></i>
+                    No stock history records found for this product.
+                </div>
+            </div>
+            <div class="modal-footer">                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bulk Update Modal -->
+<div class="modal fade" id="bulkUpdateModal" tabindex="-1" aria-labelledby="bulkUpdateModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="bulkUpdateModalLabel">Bulk Stock Update</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="bulkUpdateReason" class="form-label">Reason for Update</label>
+                    <input type="text" class="form-control" id="bulkUpdateReason" placeholder="e.g., New shipment received, Inventory reconciliation">
+                </div>
+                <div class="mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="showOutOfStockOnly">
+                        <label class="form-check-label" for="showOutOfStockOnly">
+                            Show out of stock items only
+                        </label>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-sm">
+                        <thead>
                             <tr>
-                                <td colspan="6" class="text-center">No history data available yet</td>
+                                <th style="width: 50px;">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="selectAllProducts">
+                                    </div>
+                                </th>
+                                <th>Product</th>
+                                <th>Current Stock</th>
+                                <th>New Stock</th>
                             </tr>
+                        </thead>
+                        <tbody id="bulkUpdateTableBody">
+                            @foreach (var product in Model)
+                            {
+                                <tr class="bulk-update-row @(product.Stock <= 0 ? "out-of-stock" : "")">
+                                    <td>
+                                        <div class="form-check">
+                                            <input class="form-check-input product-select" 
+                                                type="checkbox" 
+                                                value="@product.Id"
+                                                data-current-stock="@product.Stock">
+                                        </div>
+                                    </td>
+                                    <td>@product.Name</td>
+                                    <td>@product.Stock</td>
+                                    <td>
+                                        <input type="number" 
+                                               class="form-control form-control-sm new-stock-input"
+                                               min="0" 
+                                               value="@product.Stock" 
+                                               disabled 
+                                               data-product-id="@product.Id">
+                                    </td>
+                                </tr>
+                            }
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="saveBulkUpdateBtn">Save Changes</button>
             </div>
         </div>
     </div>
@@ -223,10 +313,8 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Chart.js defaults
             Chart.defaults.font.family = "'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif";
-            Chart.defaults.color = '#6c757d';
-            
-            // Inventory status data
-            const products = @Html.Raw(Json.Serialize(Model));
+            Chart.defaults.color = '#6c757d';            // Inventory status data - using pre-serialized data to avoid circular references
+            const products = @Html.Raw(ViewData["ProductsJson"]);
             
             // Calculate inventory status counts
             const outOfStock = products.filter(p => p.stock <= 0).length;
@@ -254,10 +342,10 @@
                         borderWidth: 1,
                         borderRadius: 4
                     }]
-                },
-                options: {
+                },                options: {
                     responsive: true,
-                    maintainAspectRatio: false,
+                    maintainAspectRatio: true,
+                    aspectRatio: 3,  // Make it wider than tall
                     plugins: {
                         legend: {
                             display: false
@@ -308,55 +396,262 @@
                 });
             });
             
-            // Mock update stock functionality
+            // Handle stock history modal
+            const stockHistoryModal = document.getElementById('stockHistoryModal');
+            stockHistoryModal.addEventListener('show.bs.modal', function(event) {
+                const button = event.relatedTarget;
+                const productId = button.getAttribute('data-id');
+                const productRow = button.closest('tr');
+                const productName = productRow.querySelector('td:nth-child(2)').textContent;
+                
+                // Update modal content
+                const modal = this;
+                modal.querySelector('.product-name').textContent = productName;
+                modal.querySelector('.product-id').textContent = productId;
+                
+                // Show loading and hide content
+                modal.querySelector('.loading-indicator').style.display = 'block';
+                modal.querySelector('.stock-history-data').style.display = 'none';
+                modal.querySelector('.no-history').style.display = 'none';
+                
+                // Fetch stock history
+                fetch(`/api/Admin/InventoryApi/stockHistory/${productId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        const tableBody = document.getElementById('stockHistoryTableBody');
+                        tableBody.innerHTML = '';
+                        
+                        if (data.history && data.history.length > 0) {
+                            data.history.forEach(item => {
+                                const stockChange = item.newStock - item.previousStock;
+                                const changeClass = stockChange > 0 ? 'text-success' : (stockChange < 0 ? 'text-danger' : '');
+                                const changePrefix = stockChange > 0 ? '+' : '';
+                                
+                                const row = `
+                                    <tr>
+                                        <td>${new Date(item.changedAt).toLocaleString()}</td>
+                                        <td>${item.previousStock}</td>
+                                        <td>${item.newStock}</td>
+                                        <td class="${changeClass}">${changePrefix}${stockChange}</td>
+                                        <td>${item.changedBy}</td>
+                                        <td>${item.reason || '-'}</td>
+                                        <td><span class="badge bg-secondary">${item.transactionType}</span></td>
+                                    </tr>
+                                `;
+                                tableBody.innerHTML += row;
+                            });
+                            
+                            modal.querySelector('.stock-history-data').style.display = 'block';
+                        } else {
+                            modal.querySelector('.no-history').style.display = 'block';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error fetching stock history:', error);
+                        modal.querySelector('.no-history').style.display = 'block';
+                        modal.querySelector('.no-history').innerHTML = `
+                            <i class="bi bi-exclamation-circle me-2"></i>
+                            Error loading stock history. Please try again later.
+                        `;
+                    })
+                    .finally(() => {
+                        modal.querySelector('.loading-indicator').style.display = 'none';
+                    });
+            });
+            
+            // Handle single product stock update
             document.querySelectorAll('.update-stock-btn').forEach(btn => {
                 btn.addEventListener('click', function() {
-                    const productId = this.getAttribute('data-id');
+                    const productId = parseInt(this.getAttribute('data-id'));
                     const input = document.querySelector(`.stock-input[data-id="${productId}"]`);
                     const newStock = parseInt(input.value);
                     
-                    // Show notification
-                    const toast = `
-                        <div class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
-                            <div class="d-flex">
-                                <div class="toast-body">
-                                    <i class="bi bi-check-circle-fill me-2"></i>
-                                    Stock updated successfully!
-                                </div>
-                                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
-                            </div>
-                        </div>
-                    `;
+                    // Create request payload
+                    const payload = {
+                        productId: productId,
+                        newStock: newStock,
+                        reason: ""
+                    };
                     
-                    const toastContainer = document.querySelector('.toast-container');
-                    toastContainer.innerHTML += toast;
-                    
-                    const toastElement = toastContainer.querySelector('.toast:last-child');
-                    const bsToast = new bootstrap.Toast(toastElement, { delay: 3000 });
-                    bsToast.show();
-                    
-                    // Update the row's stock status
-                    const row = btn.closest('tr');
-                    let newStatus = 'in-stock';
-                    let badgeClass = 'bg-success';
-                    let badgeText = 'In Stock';
-                    
-                    if (newStock <= 0) {
-                        newStatus = 'out-of-stock';
-                        badgeClass = 'bg-danger';
-                        badgeText = 'Out of Stock';
-                    } else if (newStock <= 5) {
-                        newStatus = 'low-stock';
-                        badgeClass = 'bg-warning text-dark';
-                        badgeText = 'Low Stock';
-                    }
-                    
-                    row.setAttribute('data-stock', newStatus);
-                    const statusBadge = row.querySelector('.badge');
-                    statusBadge.className = `badge ${badgeClass}`;
-                    statusBadge.textContent = badgeText;
+                    // Send update to API
+                    fetch('/api/Admin/InventoryApi/updateStock', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                        },
+                        body: JSON.stringify(payload)
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Show success toast
+                            showToast('Stock updated successfully!', 'success');
+                            
+                            // Update the row's stock status
+                            const row = btn.closest('tr');
+                            row.setAttribute('data-stock', data.stockStatus.stockLevel);
+                            const statusBadge = row.querySelector('.badge');
+                            statusBadge.className = `badge ${data.stockStatus.badgeClass}`;
+                            statusBadge.textContent = data.stockStatus.text;
+                            
+                            // Update chart data (would need to recalculate and update chart)
+                        } else {
+                            showToast('Failed to update stock.', 'danger');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error updating stock:', error);
+                        showToast('An error occurred while updating stock.', 'danger');
+                    });
                 });
             });
+            
+            // Bulk update related functionality
+            const selectAllCheckbox = document.getElementById('selectAllProducts');
+            const productCheckboxes = document.querySelectorAll('.product-select');
+            const newStockInputs = document.querySelectorAll('.new-stock-input');
+            
+            // Handle "select all" functionality
+            selectAllCheckbox.addEventListener('change', function() {
+                const isChecked = this.checked;
+                productCheckboxes.forEach(checkbox => {
+                    checkbox.checked = isChecked;
+                    toggleNewStockInput(checkbox);
+                });
+            });
+            
+            // Handle individual checkbox changes
+            productCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    toggleNewStockInput(this);
+                });
+            });
+            
+            // Toggle new stock input based on checkbox state
+            function toggleNewStockInput(checkbox) {
+                const row = checkbox.closest('tr');
+                const input = row.querySelector('.new-stock-input');
+                input.disabled = !checkbox.checked;
+            }
+            
+            // Out of stock filter for bulk update
+            document.getElementById('showOutOfStockOnly').addEventListener('change', function() {
+                const isChecked = this.checked;
+                const rows = document.querySelectorAll('.bulk-update-row');
+                
+                rows.forEach(row => {
+                    if (isChecked) {
+                        row.style.display = row.classList.contains('out-of-stock') ? '' : 'none';
+                    } else {
+                        row.style.display = '';
+                    }
+                });
+            });
+            
+            // Handle bulk update submission
+            document.getElementById('saveBulkUpdateBtn').addEventListener('click', function() {
+                const selectedProducts = document.querySelectorAll('.product-select:checked');
+                const reason = document.getElementById('bulkUpdateReason').value;
+                
+                if (selectedProducts.length === 0) {
+                    showToast('Please select at least one product to update.', 'warning');
+                    return;
+                }
+                
+                // Build update payload
+                const updates = {};
+                let hasInvalidValues = false;
+                
+                selectedProducts.forEach(checkbox => {
+                    const productId = parseInt(checkbox.value);
+                    const row = checkbox.closest('tr');
+                    const input = row.querySelector('.new-stock-input');
+                    const newStock = parseInt(input.value);
+                    
+                    if (isNaN(newStock) || newStock < 0) {
+                        hasInvalidValues = true;
+                        input.classList.add('is-invalid');
+                    } else {
+                        updates[productId] = newStock;
+                    }
+                });
+                
+                if (hasInvalidValues) {
+                    showToast('Please correct the invalid stock values.', 'warning');
+                    return;
+                }
+                
+                // Create request payload
+                const payload = {
+                    productStockUpdates: updates,
+                    reason: reason
+                };
+                
+                // Send update to API
+                fetch('/api/Admin/InventoryApi/bulkUpdate', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]').value
+                    },
+                    body: JSON.stringify(payload)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        showToast('Bulk stock update completed successfully!', 'success');
+                        
+                        // Close the modal and reload the page
+                        const bulkModal = bootstrap.Modal.getInstance(document.getElementById('bulkUpdateModal'));
+                        bulkModal.hide();
+                        
+                        // Reload the page to refresh all data
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 1000);
+                    } else {
+                        showToast('Failed to complete bulk update.', 'danger');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error during bulk update:', error);
+                    showToast('An error occurred during the bulk update.', 'danger');
+                });
+            });
+            
+            // Helper function to show toast notifications
+            function showToast(message, type) {
+                const toast = `
+                    <div class="toast align-items-center text-white bg-${type} border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                <i class="bi bi-${type === 'success' ? 'check-circle-fill' : 'exclamation-circle-fill'} me-2"></i>
+                                ${message}
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                    </div>
+                `;
+                
+                const toastContainer = document.querySelector('.toast-container');
+                toastContainer.innerHTML += toast;
+                
+                const toastElement = toastContainer.querySelector('.toast:last-child');
+                const bsToast = new bootstrap.Toast(toastElement, { delay: 3000 });
+                bsToast.show();
+            }
+            
+            // Check URL for filter parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const filterParam = urlParams.get('filter');
+            if (filterParam) {
+                const filterButtons = document.querySelectorAll('.filter-btn');
+                const targetFilter = Array.from(filterButtons).find(btn => btn.getAttribute('data-filter') === filterParam);
+                if (targetFilter) {
+                    targetFilter.click();
+                }
+            }
         });
     </script>
 }

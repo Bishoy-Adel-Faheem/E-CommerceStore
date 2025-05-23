@@ -162,10 +162,15 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Chart.js defaults
             Chart.defaults.font.family = "'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif";
-            Chart.defaults.color = '#6c757d';
-            
-            // Order status breakdown data
-            const orders = @Html.Raw(Json.Serialize(Model));
+            Chart.defaults.color = '#6c757d';            // Order status breakdown data - simplified model to avoid circular references
+            const orders = @Html.Raw(Json.Serialize(Model.Select(o => new {
+                id = o.Id,
+                orderNumber = $"ORD-{o.Id:D6}", // Format ID as an order number
+                orderDate = o.OrderDate,
+                totalAmount = o.TotalAmount,
+                status = o.Status,
+                userName = o.User?.UserName
+            })));
             
             // Calculate orders by status
             const statusGroups = {};

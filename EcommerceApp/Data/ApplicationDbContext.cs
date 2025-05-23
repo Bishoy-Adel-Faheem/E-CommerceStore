@@ -15,6 +15,7 @@ namespace EcommerceApp.Data
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<OrderNote> OrderNotes { get; set; }
+        public DbSet<StockHistory> StockHistory { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

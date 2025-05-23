@@ -153,9 +153,16 @@
             // Chart.js defaults
             Chart.defaults.font.family = "'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif";
             Chart.defaults.color = '#6c757d';
-            
-            // Product data
-            const products = @Html.Raw(Json.Serialize(Model));
+              // Product data - simplified model to avoid circular references
+            const products = @Html.Raw(Json.Serialize(Model.Select(p => new {
+                id = p.Id,
+                name = p.Name,
+                price = p.Price,
+                stock = p.Stock,
+                isFeatured = p.IsFeatured,
+                categoryId = p.CategoryId,
+                categoryName = p.Category?.Name ?? "Uncategorized"
+            })));
             
             // Calculate products by category
             const categoryGroups = {};

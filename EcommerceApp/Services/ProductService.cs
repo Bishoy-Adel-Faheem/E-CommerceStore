@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
@@ -80,13 +81,11 @@ namespace EcommerceApp.Services
             }
 
             return await query.ToListAsync();
-        }
-
-        public async Task<Product> GetProductByIdAsync(int id)
+        }        public async Task<Product> GetProductByIdAsync(int id)
         {
             return await _context.Products
                 .Include(p => p.Category)
-                .FirstOrDefaultAsync(p => p.Id == id);
+                .FirstOrDefaultAsync(p => p.Id == id) ?? throw new ArgumentException($"Product with ID {id} not found", nameof(id));
         }
 
         public async Task<Product> CreateProductAsync(Product product)
@@ -112,6 +111,90 @@ namespace EcommerceApp.Services
             _context.Products.Remove(product);
             await _context.SaveChangesAsync();
             return true;
+        }
+
+        // New inventory management methods
+        public async Task<Product> UpdateProductStockAsync(int productId, int newStock, string username, string reason = "", string transactionType = "Manual")
+        {
+            var product = await _context.Products.FindAsync(productId);
+            if (product == null)
+                throw new ArgumentException($"Product with ID {productId} not found", nameof(productId));
+
+            // Create stock history record
+            var stockHistory = new StockHistory
+            {
+                ProductId = productId,
+                PreviousStock = product.Stock,
+                NewStock = newStock,
+                ChangedAt = DateTime.Now,
+                ChangedBy = username,
+                Reason = reason,
+                TransactionType = transactionType
+            };
+
+            // Update product stock
+            product.Stock = newStock;
+
+            // Save changes
+            _context.StockHistory.Add(stockHistory);
+            _context.Entry(product).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return product;
+        }
+
+        public async Task<IEnumerable<StockHistory>> GetStockHistoryByProductIdAsync(int productId)
+        {
+            return await _context.StockHistory
+                .Where(sh => sh.ProductId == productId)
+                .OrderByDescending(sh => sh.ChangedAt)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Product>> GetLowStockProductsAsync(int threshold = 5)
+        {
+            return await _context.Products
+                .Where(p => p.Stock <= threshold && p.Stock > 0)
+                .Include(p => p.Category)
+                .OrderBy(p => p.Stock)
+                .ToListAsync();
+        }
+
+        public async Task<bool> BulkUpdateStockAsync(Dictionary<int, int> productStockUpdates, string username, string reason = "")
+        {
+            try
+            {
+                foreach (var update in productStockUpdates)
+                {
+                    int productId = update.Key;
+                    int newStock = update.Value;
+
+                    var product = await _context.Products.FindAsync(productId);
+                    if (product != null)
+                    {
+                        var stockHistory = new StockHistory
+                        {
+                            ProductId = productId,
+                            PreviousStock = product.Stock,
+                            NewStock = newStock,
+                            ChangedAt = DateTime.Now,
+                            ChangedBy = username,
+                            Reason = reason,
+                            TransactionType = "Bulk Update"
+                        };
+
+                        product.Stock = newStock;
+                        _context.StockHistory.Add(stockHistory);
+                    }
+                }
+
+                await _context.SaveChangesAsync();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }
