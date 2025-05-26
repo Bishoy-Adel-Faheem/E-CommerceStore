@@ -1,4 +1,8 @@
 # 🛍️ E-Commerce Store - ASP.NET Core MVC
+![.NET Core](https://img.shields.io/badge/.NET-9.0-blue)
+![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-MVC-green)
+![EF Core](https://img.shields.io/badge/EF%20Core-6.0-orange)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5.0-purple)
 
 A full-featured e-commerce platform built with **ASP.NET Core MVC**, following clean architecture principles and modern web development practices.
 
@@ -29,7 +33,7 @@ A full-featured e-commerce platform built with **ASP.NET Core MVC**, following c
 ## 🚀 Getting Started
 
 ### Prerequisites
-- .NET 6 SDK
+- .NET 9 SDK
 - Visual Studio 2022 (or VS Code)
 - SQL Server (or SQL Express)
 
@@ -98,11 +102,11 @@ Default admin credentials:
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License
 
 ## 📬 Contact
 
-**Bishoy Adel Faheem**
+**Bishoy Adel**
 - 📧 Email: bish0yadelfaheeem@gmail.com
 - 🔗 [LinkedIn](https://linkedin.com/in/bishoy-adel-faheem)
 - 🐱 [GitHub](https://github.com/Bishoy-Adel-Faheem)
